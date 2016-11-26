@@ -18,6 +18,8 @@
 .widget{
     text-align: center;
     padding: 60px 0 !important;
+    -webkit-transition: background-color 1s;
+    transition: background-color 1s;
 }
 
 .widget#game{
@@ -38,4 +40,20 @@
 .widget#money{
     background-color: #448dd2;
     color: #ffffff;
+}
+
+.widget#game:hover{
+    background-color: #FF6A66;
+}
+
+.widget#goal:hover{
+    background-color: #FCBF48;
+}
+
+.widget#ask:hover{
+    background-color: #7EDB87;
+}
+
+.widget#money:hover{
+    background-color: #53ABFF;
 }
