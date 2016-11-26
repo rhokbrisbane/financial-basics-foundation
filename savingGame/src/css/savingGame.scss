@@ -1,0 +1,17 @@
+/*$brand-primary: #1b4d80;
+$brand-success: #e35a22;*/
+
+$text-color: white;
+$link-color: white;
+
+$icon-font-path: "assets/fonts/";
+
+// Bootstrap navbar
+$navbar-border-radius: 0;
+/*$navbar-default-bg: $brand-primary;
+$navbar-default-color: white;
+$navbar-default-link-color: $navbar-default-color;
+$navbar-default-link-hover-color: $brand-primary;
+$navbar-default-link-hover-bg: white;*/
+
+@import "bootstrap";
