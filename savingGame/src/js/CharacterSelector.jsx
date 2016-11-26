@@ -3,6 +3,7 @@ var React = require("react");
 var CharacterSelector = React.createClass({
     characters: [
         {
+            name: "Someone",
             cash: 0,
             happiness: 0,
 
@@ -32,9 +33,11 @@ var CharacterSelector = React.createClass({
     },
 
     render: function () {
-        <div>
-            {this.state.characters.map(this.renderCharacter)}
-        </div>
+        return (
+            <div>
+                {this.characters.map(this.renderCharacter)}
+            </div>
+        );
     }
 });
 

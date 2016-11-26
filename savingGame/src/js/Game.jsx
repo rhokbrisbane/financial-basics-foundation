@@ -14,6 +14,8 @@ var Game = React.createClass({
     },
 
     render: function () {
+        var {character, week} = this.props;
+
         var component;
 
         if (!character) {
