@@ -33,7 +33,7 @@ var OpportunityCard = React.createClass({
                                 {discription}
                             </div>
                             <div className="btn-group">
-                                
+                                {actions.map(this.renderAction)}
                             </div>
                         </div>
                     </div>

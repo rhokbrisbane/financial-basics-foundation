@@ -34735,6 +34735,11 @@
 	    },
 	
 	    render: function render() {
+	        var _props = this.props,
+	            character = _props.character,
+	            week = _props.week;
+	
+	
 	        var component;
 	
 	        if (!character) {
@@ -34766,6 +34771,7 @@
 	    displayName: "CharacterSelector",
 	
 	    characters: [{
+	        name: "Someone",
 	        cash: 0,
 	        happiness: 0,
 	
@@ -34810,10 +34816,10 @@
 	    },
 	
 	    render: function render() {
-	        React.createElement(
+	        return React.createElement(
 	            "div",
 	            null,
-	            this.state.characters.map(this.renderCharacter)
+	            this.characters.map(this.renderCharacter)
 	        );
 	    }
 	});
