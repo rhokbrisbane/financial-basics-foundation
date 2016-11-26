@@ -34719,6 +34719,8 @@
 	
 	var React = __webpack_require__(/*! react */ 15);
 	var CharacterSelector = __webpack_require__(/*! ./CharacterSelector.jsx */ 193);
+	var OpportunityCard = __webpack_require__(/*! ./OpportunityCard.jsx */ 194);
+	var RandomEventCard = __webpack_require__(/*! ./RandomEventCard.jsx */ 195);
 	
 	var Game = React.createClass({
 	    displayName: "Game",
@@ -34726,7 +34728,8 @@
 	    getInitialState: function getInitialState() {
 	        return {
 	            character: null,
-	            week: 0
+	            turn: 0,
+	            stage: "summary"
 	        };
 	    },
 	
@@ -34735,20 +34738,40 @@
 	    },
 	
 	    render: function render() {
-	        var _props = this.props,
-	            character = _props.character,
-	            week = _props.week;
+	        var _state = this.state,
+	            character = _state.character,
+	            turn = _state.turn,
+	            stage = _state.stage;
 	
 	
 	        var component;
-	
 	        if (!character) {
-	            component = React.createElement(CharacterSelector, { setCharacter: this.setCharacter });
-	        } else {}
+	            component = React.createElement(
+	                "div",
+	                { className: "col-xs-12 col-sm-4 col-md-3" },
+	                React.createElement(CharacterSelector, { setCharacter: this.setCharacter })
+	            );
+	        } else {
+	            switch (stage) {
+	                case "summary":
+	
+	                    break;
+	                case "allocation":
+	
+	                    break;
+	                case "event":
+	                    if (Math.random() > 0.7) {
+	                        component = React.createElement(RandomEventCard, null);
+	                    } else {
+	                        component = React.createElement(OpportunityCard, null);
+	                    }
+	                    break;
+	            }
+	        }
 	
 	        return React.createElement(
 	            "div",
-	            null,
+	            { className: "row" },
 	            component
 	        );
 	    }
@@ -34779,14 +34802,14 @@
 	        expenses: 400
 	    }],
 	
-	    selectCharacter: function selectCharacter(character) {
+	    selectCharacter: function selectCharacter(character, e) {
 	        this.props.setCharacter(character);
 	    },
 	
 	    renderCharacter: function renderCharacter(character) {
 	        return React.createElement(
 	            "div",
-	            { className: "panel panel-default", onClick: this.selectCharacter.bind(this, character) },
+	            { className: "panel panel-default character-option", onClick: this.selectCharacter.bind(this, character) },
 	            React.createElement(
 	                "div",
 	                { className: "panel-heading" },
@@ -34818,13 +34841,111 @@
 	    render: function render() {
 	        return React.createElement(
 	            "div",
-	            null,
+	            { className: "character-selector" },
 	            this.characters.map(this.renderCharacter)
 	        );
 	    }
 	});
 	
 	module.exports = CharacterSelector;
+
+/***/ },
+/* 194 */
+/*!************************************!*\
+  !*** ./src/js/OpportunityCard.jsx ***!
+  \************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+	
+	var React = __webpack_require__(/*! react */ 15);
+	
+	var OpportunityCard = React.createClass({
+	    displayName: "OpportunityCard",
+	
+	    selectAction: function selectAction() {},
+	
+	    renderAction: function renderAction(action) {
+	        React.createElement(
+	            "button",
+	            { className: "btn btn-primary active" },
+	            action.name
+	        );
+	    },
+	
+	    render: function render() {
+	        var description = this.props.description;
+	
+	
+	        return React.createElement(
+	            "div",
+	            { className: "modal fade" },
+	            React.createElement(
+	                "div",
+	                { className: "modal-dialog", role: "document" },
+	                React.createElement(
+	                    "div",
+	                    { className: "modal-content" },
+	                    React.createElement(
+	                        "div",
+	                        { className: "modal-header" },
+	                        React.createElement(
+	                            "button",
+	                            { type: "button", className: "close", "data-dismiss": "modal", "aria-label": "Close" },
+	                            React.createElement(
+	                                "span",
+	                                { "aria-hidden": true },
+	                                "\xD7"
+	                            )
+	                        ),
+	                        React.createElement(
+	                            "h4",
+	                            { className: "modal-title" },
+	                            "Opportunity"
+	                        )
+	                    ),
+	                    React.createElement(
+	                        "div",
+	                        { className: "modal-body" },
+	                        React.createElement(
+	                            "div",
+	                            null,
+	                            discription
+	                        ),
+	                        React.createElement(
+	                            "div",
+	                            { className: "btn-group" },
+	                            actions.map(this.renderAction)
+	                        )
+	                    )
+	                )
+	            )
+	        );
+	    }
+	});
+	
+	module.exports = OpportunityCard;
+
+/***/ },
+/* 195 */
+/*!************************************!*\
+  !*** ./src/js/RandomEventCard.jsx ***!
+  \************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+	
+	var React = __webpack_require__(/*! react */ 15);
+	
+	var RandomEventCard = React.createClass({
+	    displayName: "RandomEventCard",
+	
+	    render: function render() {
+	        return React.createElement("div", null);
+	    }
+	});
+	
+	module.exports = RandomEventCard;
 
 /***/ }
 /******/ ]);

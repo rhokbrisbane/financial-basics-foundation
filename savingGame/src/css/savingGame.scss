@@ -1,8 +1,8 @@
 /*$brand-primary: #1b4d80;
 $brand-success: #e35a22;*/
 
-$text-color: white;
-$link-color: white;
+/*$text-color: white;
+$link-color: white;*/
 
 $icon-font-path: "assets/fonts/";
 
@@ -15,3 +15,9 @@ $navbar-default-link-hover-color: $brand-primary;
 $navbar-default-link-hover-bg: white;*/
 
 @import "bootstrap";
+
+.character-selector {
+    .character-option {
+        cursor: pointer;
+    }
+}
