@@ -12,13 +12,13 @@ var CharacterSelector = React.createClass({
         }
     ],
 
-    selectCharacter: function (character) {
+    selectCharacter: function (character, e) {
         this.props.setCharacter(character);
     },
 
     renderCharacter: function (character) {
         return (
-            <div className="panel panel-default" onClick={this.selectCharacter.bind(this, character)}>
+            <div className="panel panel-default character-option" onClick={this.selectCharacter.bind(this, character)}>
                 <div className="panel-heading">
                     <h3 className="panel-title">
                         {character.name}
@@ -34,7 +34,7 @@ var CharacterSelector = React.createClass({
 
     render: function () {
         return (
-            <div>
+            <div className="character-selector">
                 {this.characters.map(this.renderCharacter)}
             </div>
         );

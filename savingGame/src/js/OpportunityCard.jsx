@@ -42,3 +42,5 @@ var OpportunityCard = React.createClass({
         );
     }
 });
+
+module.exports = OpportunityCard;
