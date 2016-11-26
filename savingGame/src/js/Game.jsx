@@ -19,7 +19,24 @@ var Game = React.createClass({
         this.setState({character: character});
     },
 
+    adjust: function (cost, happiness) {
+        var {character} = this.state;
+
+        character.cash -= cost;
+        character.happiness += happiness;
+
+        this.forceUpdate();
+    },
+
     nextTurn: function () {
+        var {character} = this.state;
+
+        this.shop.checkout();
+
+        character.cash -= character.expenses;
+        character.cash += character.income;
+        character.happiness -= character.happinessDecay;
+
         /*if (Math.random() > 0.7) {
             component = <RandomEventCard/>
         } else {
@@ -39,13 +56,13 @@ var Game = React.createClass({
             component = (
                 <div>
                     <div className="panel-group">
-                        <Summary character={character}/>
-                        <Shop/>
+                        <Summary character={character} turn={turn}/>
+                        <Shop makePurchase={this.adjust} ref={(shop) => {this.shop = shop;}}/>
                     </div>
 
                     <div className="col-xs-10 col-xs-offset-1 col-sm-4 col-sm-offset-8 col-md-3 col-md-offset-9 col-lg-2 col-lg-offset-10">
                         <button className="btn btn-success btn-block active" onClick={this.nextTurn}>
-                            Next Turn
+                            {turn ? "Next Turn" : "Start"}
                         </button>
                     </div>
                 </div>
