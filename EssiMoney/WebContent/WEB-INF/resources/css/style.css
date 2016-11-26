@@ -3,9 +3,43 @@
     margin: 0px;
 }
 
+/*Login Page*/
+
+#background-image{
+    background-image: url("http://www.financialbasics.org.au/_media/images/bg_scene.jpg") ;
+    height: 100vh;
+}
+#login{
+    text-align: center;
+    background-color: rgba(255,255,255,0.9);
+    padding: 50px !important;
+}
+
+#login img{
+     width: 100%;
+    max-width: 100px;
+}
+
+input,button{
+    display: block;
+    padding: 10px !important;
+}
+
+button{
+    display: block;
+}
+
+#forget-password{
+    font-size: 10px;
+}
+
+/*Dashboard Page*/
+
 #header{
-    margin-bottom: 40px;
-    height: 20vh;
+    min-height: 20vh;
+    padding: 40px !important;
+    background-color: #333333;
+    color: #ffffff;
 }
 
 #body-content{

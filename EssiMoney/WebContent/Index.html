@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-    <title>Dashboard</title>
+    <title>Login</title>
 
     <!-- Bootstrap -->
     <link href="WEB-INF/resources/css/bootstrap.min.css" rel="stylesheet">
@@ -25,34 +25,36 @@
     <div class="container-fluid">
     
         <row>
-            <section class="col-xs-12 col-md-12" id="header">
-                <h1>Welcome [First Name Variable],</h1>
-                <h3>How it it going?</h3>
-                <span>Profile Completion</span>
-                <span>5/7</span>
-            </section>
-            <section class="col-xs-12 col-md-12" id="body-content">
-                <div class="widget col-xs-8 col-md-3" id="game">
-                    <i class="fa fa-gamepad fa-3x" aria-hidden="true"></i>
-                    <p>Savings Game</p>
-                </div>
-                
-                <div class="widget col-xs-4 col-md-3" id="ask">
-                    <i class="fa fa-commenting fa-3x" aria-hidden="true"></i>
-                    <p>Ask Howl</p>
-                </div>
-                
-                <div class="widget col-xs-4 col-md-3" id="goal">
-                    <i class="fa fa-trophy fa-3x" aria-hidden="true"></i>
-                    <p>Goals</p>
-                </div>
-                
-                <div class="widget col-xs-8 col-md-3" id="money">
-                    <i class="fa fa-credit-card fa-3x" aria-hidden="true"></i>
-                    <p>Finances</p>
-                </div>
-            </section>
-        </row>
+           <div id="background-image">
+            <section class="col-xs-8 col-md-6 offset-xs-2 offset-md-3" id="login">
+                <img src="WEB-INF/resources/img/howl_md.png">
+                <h1>Product Name</h1>
+                    <form action="" id="loginForm">
+                      <div class="form-group input-group">
+                        <input class="form-control" type="text" name='email' id="email" placeholder="Email"/>          
+                      </div>
+                      <div class="form-group input-group">
+                        <input class="form-control" type="password" name='password' id="pword" placeholder="password"/>     
+                      </div>
+                      <div class="form-group">
+                        <button type="button" class="btn btn-def btn-block" name="login-btn" id="login-btn">Login</button>
+                      </div>
+                      <div class="form-group text-center">
+                        <a href="#">Forgot Password</a>
+                      </div>
+                      
+                      <div class="form-group">
+                        <button type="button" class="btn btn-def btn-block">New User</button>
+                      </div>
+                      <div class="form-group">
+                        <button type="button" class="btn btn-def btn-block">Login with Facebook</button>
+                      </div>
+                      <div class="form-group">
+                        <button type="button" class="btn btn-def btn-block">Login with Google+</button>
+                      </div>
+                    </form>        
+                </section>
+            </div>
         </row>
     </div>
     
