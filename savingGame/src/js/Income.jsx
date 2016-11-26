@@ -1,6 +1,7 @@
 var React = require("react");
 
 var IncomeSheet = React.createClass({
+
 	/*	Inital state - if calculations are done in this file,
 		which they are currently not
 	getInitialState: function (char) {
@@ -12,6 +13,7 @@ var IncomeSheet = React.createClass({
 
 	}
 	*/
+
 	render: function (char) {
 	//Takes .characters from character as char
 
