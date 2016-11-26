@@ -18,7 +18,7 @@ var CharacterSelector = React.createClass({
 
     renderCharacter: function (character) {
         return (
-            <div className="panel panel-default character-option" onClick={this.selectCharacter.bind(this, character)}>
+            <div className="panel panel-default character-option" onClick={this.selectCharacter.bind(this, character)} key={character.name}>
                 <div className="panel-heading">
                     <h3 className="panel-title">
                         {character.name}

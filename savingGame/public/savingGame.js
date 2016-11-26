@@ -34719,6 +34719,8 @@
 	
 	var React = __webpack_require__(/*! react */ 15);
 	var CharacterSelector = __webpack_require__(/*! ./CharacterSelector.jsx */ 193);
+	var Summary = __webpack_require__(/*! ./Summary.jsx */ 197);
+	var Shop = __webpack_require__(/*! ./Shop.jsx */ 198);
 	var OpportunityCard = __webpack_require__(/*! ./OpportunityCard.jsx */ 194);
 	var RandomEventCard = __webpack_require__(/*! ./RandomEventCard.jsx */ 195);
 	
@@ -34728,51 +34730,65 @@
 	    getInitialState: function getInitialState() {
 	        return {
 	            character: null,
-	            turn: 0,
-	            stage: "summary"
+	            turn: 0
 	        };
 	    },
 	
 	    setCharacter: function setCharacter(character) {
+	        character.cash = character.income - character.expenses;
+	
 	        this.setState({ character: character });
+	    },
+	
+	    nextTurn: function nextTurn() {
+	        /*if (Math.random() > 0.7) {
+	            component = <RandomEventCard/>
+	        } else {
+	            component = <OpportunityCard/>
+	        }*/
+	
+	        this.setState({ turn: this.state.turn + 1 });
 	    },
 	
 	    render: function render() {
 	        var _state = this.state,
 	            character = _state.character,
-	            turn = _state.turn,
-	            stage = _state.stage;
+	            turn = _state.turn;
 	
 	
 	        var component;
 	        if (!character) {
+	            component = React.createElement(CharacterSelector, { setCharacter: this.setCharacter });
+	        } else {
 	            component = React.createElement(
 	                "div",
-	                { className: "col-xs-12 col-sm-4 col-md-3" },
-	                React.createElement(CharacterSelector, { setCharacter: this.setCharacter })
+	                null,
+	                React.createElement(
+	                    "div",
+	                    { className: "panel-group" },
+	                    React.createElement(Summary, { character: character }),
+	                    React.createElement(Shop, null)
+	                ),
+	                React.createElement(
+	                    "div",
+	                    { className: "col-xs-10 col-xs-offset-1 col-sm-4 col-sm-offset-8 col-md-3 col-md-offset-9 col-lg-2 col-lg-offset-10" },
+	                    React.createElement(
+	                        "button",
+	                        { className: "btn btn-success btn-block active", onClick: this.nextTurn },
+	                        "Next Turn"
+	                    )
+	                )
 	            );
-	        } else {
-	            switch (stage) {
-	                case "summary":
-	
-	                    break;
-	                case "allocation":
-	
-	                    break;
-	                case "event":
-	                    if (Math.random() > 0.7) {
-	                        component = React.createElement(RandomEventCard, null);
-	                    } else {
-	                        component = React.createElement(OpportunityCard, null);
-	                    }
-	                    break;
-	            }
 	        }
 	
 	        return React.createElement(
 	            "div",
 	            { className: "row" },
-	            component
+	            React.createElement(
+	                "div",
+	                { className: "col-xs-12" },
+	                component
+	            )
 	        );
 	    }
 	});
@@ -34809,7 +34825,7 @@
 	    renderCharacter: function renderCharacter(character) {
 	        return React.createElement(
 	            "div",
-	            { className: "panel panel-default character-option", onClick: this.selectCharacter.bind(this, character) },
+	            { className: "panel panel-default character-option", onClick: this.selectCharacter.bind(this, character), key: character.name },
 	            React.createElement(
 	                "div",
 	                { className: "panel-heading" },
@@ -34946,6 +34962,209 @@
 	});
 	
 	module.exports = RandomEventCard;
+
+/***/ },
+/* 196 */,
+/* 197 */
+/*!****************************!*\
+  !*** ./src/js/Summary.jsx ***!
+  \****************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+	
+	var React = __webpack_require__(/*! react */ 15);
+	
+	var Summary = React.createClass({
+	    displayName: "Summary",
+	
+	    propTypes: {
+	        character: React.PropTypes.object.isRequired
+	    },
+	
+	    render: function render() {
+	        var _props$character = this.props.character,
+	            name = _props$character.name,
+	            cash = _props$character.cash,
+	            happiness = _props$character.happiness,
+	            income = _props$character.income,
+	            expenses = _props$character.expenses;
+	
+	
+	        return React.createElement(
+	            "div",
+	            { className: "panel panel-default" },
+	            React.createElement(
+	                "div",
+	                { className: "panel-heading", role: "button", "data-toggle": "collapse", "data-target": "#summary-panel", "aria-expanded": true, "aria-controls": "#summary-panel" },
+	                React.createElement(
+	                    "h3",
+	                    { className: "panel-title" },
+	                    "Summary"
+	                )
+	            ),
+	            React.createElement(
+	                "div",
+	                { id: "summary-panel", className: "panel-collapse collapse in" },
+	                React.createElement(
+	                    "div",
+	                    { className: "panel-body" },
+	                    React.createElement(
+	                        "div",
+	                        null,
+	                        "Name: ",
+	                        name
+	                    ),
+	                    React.createElement(
+	                        "div",
+	                        null,
+	                        "Cash: $",
+	                        cash
+	                    ),
+	                    React.createElement(
+	                        "div",
+	                        null,
+	                        "Happiness: ",
+	                        happiness >= 0 ? "+" : "-",
+	                        happiness
+	                    ),
+	                    React.createElement(
+	                        "div",
+	                        null,
+	                        "Income: $",
+	                        income
+	                    ),
+	                    React.createElement(
+	                        "div",
+	                        null,
+	                        "Expenses: $",
+	                        expenses
+	                    )
+	                )
+	            )
+	        );
+	    }
+	});
+	
+	module.exports = Summary;
+
+/***/ },
+/* 198 */
+/*!*************************!*\
+  !*** ./src/js/Shop.jsx ***!
+  \*************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+	
+	var React = __webpack_require__(/*! react */ 15);
+	
+	var Item = React.createClass({
+	    displayName: "Item",
+	
+	    render: function render() {
+	        var _props = this.props,
+	            name = _props.name,
+	            cost = _props.cost,
+	            happiness = _props.happiness,
+	            max = _props.max;
+	
+	
+	        return React.createElement(
+	            "div",
+	            { className: "panel panel-default" },
+	            React.createElement(
+	                "div",
+	                { className: "panel-heading" },
+	                React.createElement(
+	                    "h3",
+	                    { className: "panel-title" },
+	                    name
+	                )
+	            ),
+	            React.createElement(
+	                "div",
+	                { className: "panel-body" },
+	                React.createElement(
+	                    "div",
+	                    null,
+	                    "Cost: $",
+	                    cost
+	                ),
+	                React.createElement(
+	                    "div",
+	                    null,
+	                    "Happiness: ",
+	                    happiness >= 0 ? "+" : "-",
+	                    happiness
+	                ),
+	                React.createElement(
+	                    "div",
+	                    { className: "form-group" },
+	                    React.createElement(
+	                        "label",
+	                        { className: "control-label col-xs-3" },
+	                        "Quantity:"
+	                    ),
+	                    React.createElement(
+	                        "div",
+	                        { className: "col-xs-9" },
+	                        React.createElement("input", { type: "number", min: 0, max: max, className: "form-control" })
+	                    )
+	                )
+	            )
+	        );
+	    }
+	});
+	
+	var Shop = React.createClass({
+	    displayName: "Shop",
+	
+	    items: [{ name: "Eating out", cost: 30, happiness: 5, max: 7 }, { name: "Weekend Away", cost: 600, happiness: 200, max: 1 }],
+	
+	    renderItem: function renderItem(item) {
+	        return React.createElement(
+	            "div",
+	            { className: "col-xs-6 col-sm-4 col-md-3 col-lg-2", key: item.name },
+	            React.createElement(Item, item)
+	        );
+	    },
+	
+	    render: function render() {
+	        return React.createElement(
+	            "div",
+	            { className: "panel panel-default" },
+	            React.createElement(
+	                "div",
+	                { className: "panel-heading", role: "button", "data-toggle": "collapse", "data-target": "#shop-panel", "aria-expanded": true, "aria-controls": "#shop-panel" },
+	                React.createElement(
+	                    "h3",
+	                    { className: "panel-title" },
+	                    "Shop"
+	                )
+	            ),
+	            React.createElement(
+	                "div",
+	                { id: "shop-panel", className: "panel-collapse collapse in" },
+	                React.createElement(
+	                    "div",
+	                    { className: "panel-body" },
+	                    React.createElement(
+	                        "form",
+	                        { className: "form-horizontal" },
+	                        React.createElement(
+	                            "div",
+	                            { className: "row" },
+	                            this.items.map(this.renderItem)
+	                        )
+	                    )
+	                )
+	            )
+	        );
+	    }
+	});
+	
+	module.exports = Shop;
 
 /***/ }
 /******/ ]);

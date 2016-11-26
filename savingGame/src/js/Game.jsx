@@ -1,5 +1,7 @@
 var React = require("react");
 var CharacterSelector = require("./CharacterSelector.jsx");
+var Summary = require("./Summary.jsx");
+var Shop = require("./Shop.jsx");
 var OpportunityCard = require("./OpportunityCard.jsx");
 var RandomEventCard = require("./RandomEventCard.jsx");
 
@@ -7,46 +9,54 @@ var Game = React.createClass({
     getInitialState: function () {
         return {
             character: null,
-            turn: 0,
-            stage: "summary"
+            turn: 0
         };
     },
 
     setCharacter: function (character) {
+        character.cash = character.income - character.expenses;
+
         this.setState({character: character});
     },
 
+    nextTurn: function () {
+        /*if (Math.random() > 0.7) {
+            component = <RandomEventCard/>
+        } else {
+            component = <OpportunityCard/>
+        }*/
+
+        this.setState({turn: this.state.turn + 1});
+    },
+
     render: function () {
-        var {character, turn, stage} = this.state;
+        var {character, turn} = this.state;
 
         var component;
         if (!character) {
+            component = <CharacterSelector setCharacter={this.setCharacter}/>;
+        } else {
             component = (
-                <div className="col-xs-12 col-sm-4 col-md-3">
-                    <CharacterSelector setCharacter={this.setCharacter}/>
+                <div>
+                    <div className="panel-group">
+                        <Summary character={character}/>
+                        <Shop/>
+                    </div>
+
+                    <div className="col-xs-10 col-xs-offset-1 col-sm-4 col-sm-offset-8 col-md-3 col-md-offset-9 col-lg-2 col-lg-offset-10">
+                        <button className="btn btn-success btn-block active" onClick={this.nextTurn}>
+                            Next Turn
+                        </button>
+                    </div>
                 </div>
             );
-        } else {
-            switch (stage) {
-            case "summary":
-                
-                break;
-            case "allocation":
-                
-                break;
-            case "event":
-                if (Math.random() > 0.7) {
-                    component = <RandomEventCard/>
-                } else {
-                    component = <OpportunityCard/>
-                }
-                break;
-            }
         }
 
         return (
             <div className="row">
-                {component}
+                <div className="col-xs-12">
+                    {component}
+                </div>
             </div>
         );
     }
