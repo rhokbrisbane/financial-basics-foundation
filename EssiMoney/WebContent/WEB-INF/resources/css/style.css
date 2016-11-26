@@ -1,0 +1,41 @@
+*{
+    padding:0px !important;
+    margin: 0px;
+}
+
+#header{
+    margin-bottom: 40px;
+    height: 20vh;
+}
+
+#body-content{
+    min-height: 70vh;
+    padding: 100px 40px !important;
+    background: url("http://www.financialbasics.org.au/_media/images/bg_scene.jpg") ;
+    )
+}
+
+.widget{
+    text-align: center;
+    padding: 60px 0 !important;
+}
+
+.widget#game{
+    background-color: #d75956;
+    color: #ffffff;
+}
+
+.widget#goal{
+    background-color: #fcbf63;
+    color: #ffffff;
+}
+
+.widget#ask{
+    background-color: #74c97c;
+    color: #ffffff;
+}
+
+.widget#money{
+    background-color: #448dd2;
+    color: #ffffff;
+}
