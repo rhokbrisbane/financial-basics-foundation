@@ -2,8 +2,8 @@ var React = require("react");
 
 var CharacterSelector = React.createClass({
     characters: [
-        {name: "Someone", cash: 0, happiness: 0, happinessDecay: 10, income: 900, expenses: 400},
-        {name: "Someone Else", cash: 0, happiness: 0, happinessDecay: 5, income: 700, expenses: 250}
+        {name: "Reggie McRib", cash: 0, happiness: 0, happinessDecay: 10, income: 900, expenses: 400},
+        {name: "Sammie Sandwich", cash: 0, happiness: 0, happinessDecay: 5, income: 700, expenses: 250}
     ],
 
     selectCharacter: function (character, e) {

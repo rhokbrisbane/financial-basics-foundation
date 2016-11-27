@@ -79,11 +79,18 @@ var Game = React.createClass({
                         {opportunity ? <OpportunityCard takeIt={this.adjust} ref={(opportunity) => {this.opportunity = opportunity;}} {...opportunity}/> : null}
                     </div>
 
-                    <div className="col-xs-10 col-xs-offset-1 col-sm-4 col-sm-offset-8 col-md-3 col-md-offset-9 col-lg-2 col-lg-offset-10">
+                    <div className="col-xs-4 col-xs-offset-1 col-sm-4 col-sm-offset-2 col-md-3 col-md-offset-3 col-lg-2 col-lg-offset-6">
+                        <a className="btn btn-danger btn-block active" href="index.html">
+                            Retire
+                        </a>
+                    </div>
+
+                    <div className="col-xs-6 col-xs-offset-1 col-sm-4 col-sm-offset-2 col-md-3 col-md-offset-3 col-lg-2 col-lg-offset-2">
                         <button className="btn btn-success btn-block active" onClick={this.nextTurn}>
                             {turn ? "Next Turn" : "Start"}
                         </button>
                     </div>
+
                 </div>
             );
         }
