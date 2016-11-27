@@ -35035,7 +35035,7 @@
 	
 	        return React.createElement(
 	            "div",
-	            { className: "panel panel-default" },
+	            { className: "panel panel-default", style: { marginBottom: 15 } },
 	            React.createElement(
 	                "div",
 	                { className: "panel-heading" },
@@ -35171,7 +35171,7 @@
 	                { id: "shop-panel", className: "panel-collapse collapse in" },
 	                React.createElement(
 	                    "div",
-	                    { className: "panel-body" },
+	                    { className: "panel-body", style: { paddingBottom: 0 } },
 	                    React.createElement(
 	                        "form",
 	                        { className: "form-horizontal", onSubmit: this.submit },

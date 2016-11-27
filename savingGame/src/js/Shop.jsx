@@ -10,7 +10,7 @@ var Item = React.createClass({
         var {name, cost, happiness, max, amount} = this.props;
 
         return (
-            <div className="panel panel-default">
+            <div className="panel panel-default" style={{marginBottom: 15}}>
                 <div className="panel-heading">
                     <h3 className="panel-title">
                         {name}
@@ -117,7 +117,7 @@ var Shop = React.createClass({
                     </h3>
                 </div>
                 <div id="shop-panel" className="panel-collapse collapse in">
-                    <div className="panel-body">
+                    <div className="panel-body" style={{paddingBottom: 0}}>
                         <form className="form-horizontal" onSubmit={this.submit}>
                             <div className="row">
                                 {this.state.items.map(this.renderItem)}
