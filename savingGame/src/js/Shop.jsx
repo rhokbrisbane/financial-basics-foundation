@@ -8,10 +8,10 @@ var Item = React.createClass({
     },
 
     render: function () {
-        var {name, cost, happiness, max, amount} = this.props;
+        var {name, cost, happiness, max, amount, isGoal} = this.props;
 
         return (
-            <div className="panel panel-default" style={{marginBottom: 15}}>
+            <div className={"panel panel-" + (isGoal ? "success" : "default")} style={{marginBottom: 15}}>
                 <div className="panel-heading">
                     <h3 className="panel-title">
                         {name}
@@ -103,9 +103,11 @@ var Shop = React.createClass({
     },
 
     renderItem: function (item) {
+        var isGoal = this.props.goal == item.name;
+    
         return (
             <div className="col-xs-6 col-sm-4 col-md-3 col-lg-2" key={item.name}>
-                <Item {...item} onChange={this.onChange}/>
+                <Item isGoal={isGoal} {...item} onChange={this.onChange}/>
             </div>
         );
     },

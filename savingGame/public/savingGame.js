@@ -34874,7 +34874,7 @@
 	                    "div",
 	                    { className: "panel-group" },
 	                    React.createElement(Summary, { character: character, turn: turn }),
-	                    React.createElement(Shop, { makePurchase: this.adjust, ref: function ref(shop) {
+	                    React.createElement(Shop, { makePurchase: this.adjust, goal: character.goal, ref: function ref(shop) {
 	                            _this.shop = shop;
 	                        } }),
 	                    opportunity ? React.createElement(OpportunityCard, _extends({ takeIt: this.adjust, ref: function ref(opportunity) {
@@ -35110,12 +35110,13 @@
 	            cost = _props.cost,
 	            happiness = _props.happiness,
 	            max = _props.max,
-	            amount = _props.amount;
+	            amount = _props.amount,
+	            isGoal = _props.isGoal;
 	
 	
 	        return React.createElement(
 	            "div",
-	            { className: "panel panel-default", style: { marginBottom: 15 } },
+	            { className: "panel panel-" + (isGoal ? "success" : "default"), style: { marginBottom: 15 } },
 	            React.createElement(
 	                "div",
 	                { className: "panel-heading" },
@@ -35226,10 +35227,12 @@
 	    },
 	
 	    renderItem: function renderItem(item) {
+	        var isGoal = this.props.goal == item.name;
+	
 	        return React.createElement(
 	            "div",
 	            { className: "col-xs-6 col-sm-4 col-md-3 col-lg-2", key: item.name },
-	            React.createElement(Item, _extends({}, item, { onChange: this.onChange }))
+	            React.createElement(Item, _extends({ isGoal: isGoal }, item, { onChange: this.onChange }))
 	        );
 	    },
 	

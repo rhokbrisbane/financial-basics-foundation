@@ -127,7 +127,7 @@ var Game = React.createClass({
                 <div>
                     <div className="panel-group">
                         <Summary character={character} turn={turn}/>
-                        <Shop makePurchase={this.adjust} ref={(shop) => {this.shop = shop;}}/>
+                        <Shop makePurchase={this.adjust} goal={character.goal} ref={(shop) => {this.shop = shop;}}/>
                         {opportunity ? <OpportunityCard takeIt={this.adjust} ref={(opportunity) => {this.opportunity = opportunity;}} {...opportunity}/> : null}
                     </div>
 
