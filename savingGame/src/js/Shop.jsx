@@ -11,9 +11,9 @@ var Item = React.createClass({
         var {name, cost, happiness, max, amount, isGoal} = this.props;
 
         return (
-            <div className={"panel panel-" + (isGoal ? "success" : "default")} style={{marginBottom: 15}}>
+            <div className={"panel panel-" + (isGoal ? "warning" : "info")} style={{marginBottom: 15}}>
                 <div className="panel-heading">
-                    <h3 className="panel-title">
+                    <h3 className="panel-title text-center">
                         {name}
                     </h3>
                 </div>
@@ -118,9 +118,9 @@ var Shop = React.createClass({
 
     render: function () {
         return (
-            <div className="panel panel-default">
+            <div className="panel panel-primary">
                 <div className="panel-heading" role="button" data-toggle="collapse" data-target="#shop-panel" aria-expanded={true} aria-controls="#shop-panel">
-                    <h3 className="panel-title">
+                    <h3 className="panel-title text-center">
                         Shop
                     </h3>
                 </div>

@@ -35471,13 +35471,13 @@
 	
 	        return React.createElement(
 	            "div",
-	            { className: "panel panel-" + (isGoal ? "success" : "default"), style: { marginBottom: 15 } },
+	            { className: "panel panel-" + (isGoal ? "warning" : "info"), style: { marginBottom: 15 } },
 	            React.createElement(
 	                "div",
 	                { className: "panel-heading" },
 	                React.createElement(
 	                    "h3",
-	                    { className: "panel-title" },
+	                    { className: "panel-title text-center" },
 	                    name
 	                )
 	            ),
@@ -35598,13 +35598,13 @@
 	    render: function render() {
 	        return React.createElement(
 	            "div",
-	            { className: "panel panel-default" },
+	            { className: "panel panel-primary" },
 	            React.createElement(
 	                "div",
 	                { className: "panel-heading", role: "button", "data-toggle": "collapse", "data-target": "#shop-panel", "aria-expanded": true, "aria-controls": "#shop-panel" },
 	                React.createElement(
 	                    "h3",
-	                    { className: "panel-title" },
+	                    { className: "panel-title text-center" },
 	                    "Shop"
 	                )
 	            ),
