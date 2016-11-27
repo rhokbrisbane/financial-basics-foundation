@@ -19,11 +19,11 @@ var Summary = React.createClass({
                 </div>
                 <div id="summary-panel" className="text-center panel-collapse collapse in">
                     <div className="panel-body">
-                        <div style{{fontWeight: 700, fontSize: 24}}>{name}</div>
-                        <div><i class="fa fa-money" aria-hidden="true"></i>Cash: ${helpers.printNumber(Math.round(cash * 100) / 100)}</div>
-                        <div><i class="fa fa-arrow-smile-o" aria-hidden="true"></i>Happiness: {happiness >= 0 ? "+" : ""}{helpers.printNumber(happiness)}</div>
-                        <div><i class="fa fa-arrow-up" aria-hidden="true"></i>Income: ${helpers.printNumber(income)}</div>
-                        <div><i class="fa fa-arrow-down" aria-hidden="true"></i>Expenses: ${helpers.printNumber(expenses)}</div>
+                        <div style={{fontWeight: 700, fontSize: 24}}>{name}</div>
+                        <span><i className="fa fa-money" aria-hidden="true"></i>Cash: ${helpers.printNumber(Math.round(cash * 100) / 100)}</span>
+                        <span><i className="fa fa-arrow-smile-o" aria-hidden="true"></i>Happiness: {happiness >= 0 ? "+" : ""}{helpers.printNumber(happiness)}</span>
+                        <span><i className="fa fa-arrow-up" aria-hidden="true"></i>Income: ${helpers.printNumber(income)}</span>
+                        <span><i className="fa fa-arrow-down" aria-hidden="true"></i>Expenses: ${helpers.printNumber(expenses)}</span>
                     </div>
                 </div>
             </div>
