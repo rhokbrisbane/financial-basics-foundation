@@ -1,5 +1,6 @@
 var $ = require("jquery");
 var React = require("react");
+var helpers = require("./helpers.js");
 
 var Item = React.createClass({
     onChange: function (e) {
@@ -7,18 +8,18 @@ var Item = React.createClass({
     },
 
     render: function () {
-        var {name, cost, happiness, max, amount} = this.props;
+        var {name, cost, happiness, max, amount, isGoal} = this.props;
 
         return (
-            <div className="panel panel-default" style={{marginBottom: 15}}>
+            <div className={"panel panel-" + (isGoal ? "success" : "default")} style={{marginBottom: 15}}>
                 <div className="panel-heading">
                     <h3 className="panel-title">
                         {name}
                     </h3>
                 </div>
                 <div className="panel-body">
-                    <div>Cost: ${cost}</div>
-                    <div>Happiness: {happiness >= 0 ? "+" : "-"}{happiness}</div>
+                    <div>Cost: ${helpers.printNumber(cost)}</div>
+                    <div>Happiness: {happiness >= 0 ? "+" : "-"}{helpers.printNumber(happiness)}</div>
                     <div className="form-group">
                         <label className="control-label col-xs-12 col-sm-3">
                             Quantity:
@@ -38,7 +39,8 @@ var Shop = React.createClass({
         {name: "Eating out", cost: 30, happiness: 5, max: 7},
         {name: "Weekend Away", cost: 800, happiness: 200, max: 1},
         {name: "Beach day", cost: 20, happiness: 20, max: 2},
-        {name: "Car", cost: 50000, happiness: 2000, max: 1}
+        {name: "Car", cost: 16000, happiness: 800, max: 1},
+        {name: "Awesome Car", cost: 50000, happiness: 2000, max: 1}
     ],
 
     getInitialState: function () {
@@ -89,7 +91,11 @@ var Shop = React.createClass({
         $.each(this.state.items, function (i, item) {
             cost += item.cost * item.amount;
             happiness += item.happiness * item.amount;
-        });
+
+            if (item.name == this.props.goal && item.amount > 0) {
+                this.props.boughtGoal();
+            }
+        }.bind(this));
 
         this.props.makePurchase(cost, happiness);
 
@@ -101,9 +107,11 @@ var Shop = React.createClass({
     },
 
     renderItem: function (item) {
+        var isGoal = this.props.goal == item.name;
+    
         return (
             <div className="col-xs-6 col-sm-4 col-md-3 col-lg-2" key={item.name}>
-                <Item {...item} onChange={this.onChange}/>
+                <Item isGoal={isGoal} {...item} onChange={this.onChange}/>
             </div>
         );
     },

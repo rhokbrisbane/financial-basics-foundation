@@ -34752,7 +34752,8 @@
 	        return {
 	            character: null,
 	            turn: 0,
-	            opportunity: null
+	            opportunity: null,
+	            boughtGoal: false
 	        };
 	    },
 	
@@ -34770,6 +34771,10 @@
 	        character.happiness += happiness;
 	
 	        this.forceUpdate();
+	    },
+	
+	    boughtGoal: function boughtGoal() {
+	        this.setState({ boughtGoal: true });
 	    },
 	
 	    nextTurn: function nextTurn() {
@@ -34812,7 +34817,8 @@
 	        var _state = this.state,
 	            character = _state.character,
 	            turn = _state.turn,
-	            opportunity = _state.opportunity;
+	            opportunity = _state.opportunity,
+	            boughtGoal = _state.boughtGoal;
 	
 	
 	        var component;
@@ -34866,6 +34872,30 @@
 	                    )
 	                )
 	            );
+	        } else if (boughtGoal && character.cash > 0) {
+	            component = React.createElement(
+	                "div",
+	                { className: "row" },
+	                React.createElement(
+	                    "div",
+	                    _defineProperty({ className: "col-xs-12" }, "className", "text-center"),
+	                    React.createElement(
+	                        "h1",
+	                        null,
+	                        "You Win"
+	                    ),
+	                    React.createElement(
+	                        "p",
+	                        null,
+	                        "You acheived your goal and have no debt"
+	                    ),
+	                    React.createElement(
+	                        "a",
+	                        { className: "btn btn-success active", href: "index.html" },
+	                        "Restart"
+	                    )
+	                )
+	            );
 	        } else {
 	            component = React.createElement(
 	                "div",
@@ -34874,7 +34904,7 @@
 	                    "div",
 	                    { className: "panel-group" },
 	                    React.createElement(Summary, { character: character, turn: turn }),
-	                    React.createElement(Shop, { makePurchase: this.adjust, ref: function ref(shop) {
+	                    React.createElement(Shop, { makePurchase: this.adjust, boughtGoal: this.boughtGoal, goal: character.goal, ref: function ref(shop) {
 	                            _this.shop = shop;
 	                        } }),
 	                    opportunity ? React.createElement(OpportunityCard, _extends({ takeIt: this.adjust, ref: function ref(opportunity) {
@@ -34926,11 +34956,12 @@
 	"use strict";
 	
 	var React = __webpack_require__(/*! react */ 15);
+	var helpers = __webpack_require__(/*! ./helpers.js */ 198);
 	
 	var CharacterSelector = React.createClass({
 	    displayName: "CharacterSelector",
 	
-	    characters: [{ name: "Reggie McRib", cash: 0, happiness: 0, happinessDecay: 10, income: 900, expenses: 400, minimumHappiness: -50 }, { name: "Sammie Sandwich", cash: 0, happiness: 0, happinessDecay: 5, income: 700, expenses: 250, minimumHappiness: -100 }, { name: "Tony Stark", cash: 0, happiness: 0, happinessDecay: 5, income: 10000, expenses: 9200, minimumHappiness: -10 }],
+	    characters: [{ name: "Reggie McRib", cash: 0, happiness: 0, happinessDecay: 10, income: 900, expenses: 400, minimumHappiness: -50, goal: "Car" }, { name: "Sammie Sandwich", cash: 0, happiness: 0, happinessDecay: 5, income: 700, expenses: 250, minimumHappiness: -100, goal: "Car" }, { name: "Tony Stark", cash: 0, happiness: 0, happinessDecay: 5, income: 10000, expenses: 9200, minimumHappiness: -10, goal: "Awesome Car" }],
 	
 	    selectCharacter: function selectCharacter(character, e) {
 	        this.props.setCharacter(character);
@@ -34959,13 +34990,19 @@
 	                        "div",
 	                        null,
 	                        "Income: $",
-	                        character.income
+	                        helpers.printNumber(character.income)
 	                    ),
 	                    React.createElement(
 	                        "div",
 	                        null,
 	                        "Expenses: $",
-	                        character.expenses
+	                        helpers.printNumber(character.expenses)
+	                    ),
+	                    React.createElement(
+	                        "div",
+	                        null,
+	                        "Goal: ",
+	                        character.goal
 	                    )
 	                )
 	            )
@@ -34993,6 +35030,7 @@
 	"use strict";
 	
 	var React = __webpack_require__(/*! react */ 15);
+	var helpers = __webpack_require__(/*! ./helpers.js */ 198);
 	
 	var Summary = React.createClass({
 	    displayName: "Summary",
@@ -35025,7 +35063,7 @@
 	                React.createElement(
 	                    "h3",
 	                    { className: "panel-title" },
-	                    "Turn: ",
+	                    "Week: ",
 	                    this.props.turn
 	                )
 	            ),
@@ -35045,26 +35083,26 @@
 	                        "div",
 	                        null,
 	                        "Cash: $",
-	                        Math.round(cash * 100) / 100
+	                        helpers.printNumber(Math.round(cash * 100) / 100)
 	                    ),
 	                    React.createElement(
 	                        "div",
 	                        null,
 	                        "Happiness: ",
 	                        happiness >= 0 ? "+" : "",
-	                        happiness
+	                        helpers.printNumber(happiness)
 	                    ),
 	                    React.createElement(
 	                        "div",
 	                        null,
 	                        "Income: $",
-	                        income
+	                        helpers.printNumber(income)
 	                    ),
 	                    React.createElement(
 	                        "div",
 	                        null,
 	                        "Expenses: $",
-	                        expenses
+	                        helpers.printNumber(expenses)
 	                    )
 	                )
 	            )
@@ -35087,6 +35125,7 @@
 	
 	var $ = __webpack_require__(/*! jquery */ 1);
 	var React = __webpack_require__(/*! react */ 15);
+	var helpers = __webpack_require__(/*! ./helpers.js */ 198);
 	
 	var Item = React.createClass({
 	    displayName: "Item",
@@ -35101,12 +35140,13 @@
 	            cost = _props.cost,
 	            happiness = _props.happiness,
 	            max = _props.max,
-	            amount = _props.amount;
+	            amount = _props.amount,
+	            isGoal = _props.isGoal;
 	
 	
 	        return React.createElement(
 	            "div",
-	            { className: "panel panel-default", style: { marginBottom: 15 } },
+	            { className: "panel panel-" + (isGoal ? "success" : "default"), style: { marginBottom: 15 } },
 	            React.createElement(
 	                "div",
 	                { className: "panel-heading" },
@@ -35123,14 +35163,14 @@
 	                    "div",
 	                    null,
 	                    "Cost: $",
-	                    cost
+	                    helpers.printNumber(cost)
 	                ),
 	                React.createElement(
 	                    "div",
 	                    null,
 	                    "Happiness: ",
 	                    happiness >= 0 ? "+" : "-",
-	                    happiness
+	                    helpers.printNumber(happiness)
 	                ),
 	                React.createElement(
 	                    "div",
@@ -35154,7 +35194,7 @@
 	var Shop = React.createClass({
 	    displayName: "Shop",
 	
-	    items: [{ name: "Eating out", cost: 30, happiness: 5, max: 7 }, { name: "Weekend Away", cost: 800, happiness: 200, max: 1 }, { name: "Beach day", cost: 20, happiness: 20, max: 2 }, { name: "Car", cost: 50000, happiness: 2000, max: 1 }],
+	    items: [{ name: "Eating out", cost: 30, happiness: 5, max: 7 }, { name: "Weekend Away", cost: 800, happiness: 200, max: 1 }, { name: "Beach day", cost: 20, happiness: 20, max: 2 }, { name: "Car", cost: 16000, happiness: 800, max: 1 }, { name: "Awesome Car", cost: 50000, happiness: 2000, max: 1 }],
 	
 	    getInitialState: function getInitialState() {
 	        var items = this.items.map(function (item) {
@@ -35205,7 +35245,11 @@
 	        $.each(this.state.items, function (i, item) {
 	            cost += item.cost * item.amount;
 	            happiness += item.happiness * item.amount;
-	        });
+	
+	            if (item.name == this.props.goal && item.amount > 0) {
+	                this.props.boughtGoal();
+	            }
+	        }.bind(this));
 	
 	        this.props.makePurchase(cost, happiness);
 	
@@ -35217,10 +35261,12 @@
 	    },
 	
 	    renderItem: function renderItem(item) {
+	        var isGoal = this.props.goal == item.name;
+	
 	        return React.createElement(
 	            "div",
 	            { className: "col-xs-6 col-sm-4 col-md-3 col-lg-2", key: item.name },
-	            React.createElement(Item, _extends({}, item, { onChange: this.onChange }))
+	            React.createElement(Item, _extends({ isGoal: isGoal }, item, { onChange: this.onChange }))
 	        );
 	    },
 	
@@ -35270,6 +35316,7 @@
 	"use strict";
 	
 	var React = __webpack_require__(/*! react */ 15);
+	var helpers = __webpack_require__(/*! ./helpers.js */ 198);
 	
 	var OpportunityCard = React.createClass({
 	    displayName: "OpportunityCard",
@@ -35331,13 +35378,13 @@
 	                    "div",
 	                    null,
 	                    "Cash: $",
-	                    cash
+	                    helpers.printNumber(cash)
 	                ),
 	                React.createElement(
 	                    "div",
 	                    null,
 	                    "Happiness: ",
-	                    happiness
+	                    helpers.printNumber(happiness)
 	                ),
 	                React.createElement(
 	                    "div",
@@ -35376,6 +35423,22 @@
 	});
 	
 	module.exports = RandomEventCard;
+
+/***/ },
+/* 198 */
+/*!***************************!*\
+  !*** ./src/js/helpers.js ***!
+  \***************************/
+/***/ function(module, exports) {
+
+	var helpers = {
+	    printNumber: function (n) {
+	        return n.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+	    }
+	};
+	
+	module.exports = helpers;
+
 
 /***/ }
 /******/ ]);
