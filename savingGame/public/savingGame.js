@@ -34734,6 +34734,11 @@
 	        description: "Do extra work for the weekend",
 	        cash: 500,
 	        happiness: -80
+	    }, {
+	        name: "RHoK",
+	        description: "Random Hacks of Kindness",
+	        cash: 0,
+	        happiness: 1000
 	    }],
 	
 	    getInitialState: function getInitialState() {
@@ -34854,7 +34859,7 @@
 	var CharacterSelector = React.createClass({
 	    displayName: "CharacterSelector",
 	
-	    characters: [{ name: "Someone", cash: 0, happiness: 0, happinessDecay: 10, income: 900, expenses: 400 }, { name: "Someone Else", cash: 0, happiness: 0, happinessDecay: 5, income: 700, expenses: 250 }],
+	    characters: [{ name: "Occupation 1", cash: 0, happiness: 0, happinessDecay: 10, income: 900, expenses: 400 }, { name: "Occupation 2", cash: 0, happiness: 0, happinessDecay: 5, income: 800, expenses: 200 }, { name: "Occupation 3", cash: 0, happiness: 0, happinessDecay: 5, income: 700, expenses: 250 }],
 	
 	    selectCharacter: function selectCharacter(character, e) {
 	        this.props.setCharacter(character);
@@ -35078,7 +35083,7 @@
 	var Shop = React.createClass({
 	    displayName: "Shop",
 	
-	    items: [{ name: "Eating out", cost: 30, happiness: 5, max: 7 }, { name: "Weekend Away", cost: 800, happiness: 200, max: 1 }],
+	    items: [{ name: "Eating out", cost: 30, happiness: 5, max: 7 }, { name: "Weekend Away", cost: 800, happiness: 200, max: 1 }, { name: "Beach day", cost: 20, happiness: 20, max: 2 }, { name: "Car", cost: 50000, happiness: 2000, max: 1 }],
 	
 	    getInitialState: function getInitialState() {
 	        var items = this.items.map(function (item) {

@@ -12,7 +12,13 @@ var Game = React.createClass({
             description: "Do extra work for the weekend",
             cash: 500,
             happiness: -80
-        }
+        },
+        {
+            name: "RHoK",
+            description: "Random Hacks of Kindness",
+            cash: 0,
+            happiness: 1000
+        },
     ],
 
     getInitialState: function () {
