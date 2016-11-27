@@ -156,19 +156,38 @@ button{
     }
 
     .action{
-        padding:10px 25px 10px 25px !important;
+        padding:10px 25px 10px 40px !important;
     }
 
     .step{
         padding: 50px 0px 0px 0px !important;    
     }
 
-    .circle {
-    border-radius: 50%;
-    width: 200px;
-    height: 200px; 
-    background-color: green;
-    padding: 50px !important;
+    .select-type {
+    text-align: center; 
+    vertical-align: middle
     }
+
+    .select-type div{
+        padding: 10px !important;
+    }
+
+    .inputform{
+        text-align: center;
+    }
+
+    .inputform input{
+        margin: auto;
+    }
+
+    .radio-form input{
+        display: inline-block;
+    }
+
+    .radio-form span{
+        display: block;
+        margin-left: auto;
+    }
+
 
 }
