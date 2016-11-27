@@ -34818,7 +34818,55 @@
 	        var component;
 	        if (!character) {
 	            component = React.createElement(CharacterSelector, { setCharacter: this.setCharacter });
-	        } else if (-character.cash * this.interest.credit < character.income - character.expenses) {
+	        } else if (-character.cash * this.interest.credit >= character.income - character.expenses) {
+	            component = React.createElement(
+	                "div",
+	                { className: "row" },
+	                React.createElement(
+	                    "div",
+	                    _defineProperty({ className: "col-xs-12" }, "className", "text-center"),
+	                    React.createElement(
+	                        "h1",
+	                        null,
+	                        "You Lose"
+	                    ),
+	                    React.createElement(
+	                        "p",
+	                        null,
+	                        "You are being crushed under enormous amounts of debt"
+	                    ),
+	                    React.createElement(
+	                        "a",
+	                        { className: "btn btn-danger active", href: "index.html" },
+	                        "Restart"
+	                    )
+	                )
+	            );
+	        } else if (character.happiness <= -100) {
+	            component = React.createElement(
+	                "div",
+	                { className: "row" },
+	                React.createElement(
+	                    "div",
+	                    _defineProperty({ className: "col-xs-12" }, "className", "text-center"),
+	                    React.createElement(
+	                        "h1",
+	                        null,
+	                        "You Lose"
+	                    ),
+	                    React.createElement(
+	                        "p",
+	                        null,
+	                        "You are very unhappy"
+	                    ),
+	                    React.createElement(
+	                        "a",
+	                        { className: "btn btn-danger active", href: "index.html" },
+	                        "Restart"
+	                    )
+	                )
+	            );
+	        } else {
 	            component = React.createElement(
 	                "div",
 	                null,
@@ -34849,30 +34897,6 @@
 	                        "button",
 	                        { className: "btn btn-success btn-block active", onClick: this.nextTurn },
 	                        turn ? "Next Turn" : "Start"
-	                    )
-	                )
-	            );
-	        } else {
-	            component = React.createElement(
-	                "div",
-	                { className: "row" },
-	                React.createElement(
-	                    "div",
-	                    _defineProperty({ className: "col-xs-12" }, "className", "text-center"),
-	                    React.createElement(
-	                        "h1",
-	                        null,
-	                        "You Lose"
-	                    ),
-	                    React.createElement(
-	                        "p",
-	                        null,
-	                        "You are being crushed under enormous amounts of debt"
-	                    ),
-	                    React.createElement(
-	                        "a",
-	                        { className: "btn btn-danger active", href: "index.html" },
-	                        "Restart"
 	                    )
 	                )
 	            );

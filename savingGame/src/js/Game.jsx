@@ -88,7 +88,41 @@ var Game = React.createClass({
         var component;
         if (!character) {
             component = <CharacterSelector setCharacter={this.setCharacter}/>;
-        } else if (-character.cash * this.interest.credit < (character.income - character.expenses)) {
+        } else if (-character.cash * this.interest.credit >= (character.income - character.expenses)) {
+            component = (
+                <div className="row">
+                    <div className="col-xs-12" className="text-center">
+                        <h1>
+                            You Lose
+                        </h1>
+                        <p>
+                            You are being crushed under enormous amounts of debt
+                        </p>
+                        <a className="btn btn-danger active" href="index.html">
+                            Restart
+                        </a>
+                    </div>
+
+                </div>
+            );
+        } else if (character.happiness <= -100) {
+            component = (
+                <div className="row">
+                    <div className="col-xs-12" className="text-center">
+                        <h1>
+                            You Lose
+                        </h1>
+                        <p>
+                            You are very unhappy
+                        </p>
+                        <a className="btn btn-danger active" href="index.html">
+                            Restart
+                        </a>
+                    </div>
+
+                </div>
+            );
+        } else {
             component = (
                 <div>
                     <div className="panel-group">
@@ -107,23 +141,6 @@ var Game = React.createClass({
                         <button className="btn btn-success btn-block active" onClick={this.nextTurn}>
                             {turn ? "Next Turn" : "Start"}
                         </button>
-                    </div>
-
-                </div>
-            );
-        } else {
-            component = (
-                <div className="row">
-                    <div className="col-xs-12" className="text-center">
-                        <h1>
-                            You Lose
-                        </h1>
-                        <p>
-                            You are being crushed under enormous amounts of debt
-                        </p>
-                        <a className="btn btn-danger active" href="index.html">
-                            Restart
-                        </a>
                     </div>
 
                 </div>
