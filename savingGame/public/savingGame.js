@@ -34926,6 +34926,7 @@
 	"use strict";
 	
 	var React = __webpack_require__(/*! react */ 15);
+	var helpers = __webpack_require__(/*! ./helpers.js */ 198);
 	
 	var CharacterSelector = React.createClass({
 	    displayName: "CharacterSelector",
@@ -34959,13 +34960,13 @@
 	                        "div",
 	                        null,
 	                        "Income: $",
-	                        character.income
+	                        helpers.printNumber(character.income)
 	                    ),
 	                    React.createElement(
 	                        "div",
 	                        null,
 	                        "Expenses: $",
-	                        character.expenses
+	                        helpers.printNumber(character.expenses)
 	                    )
 	                )
 	            )
@@ -34993,6 +34994,7 @@
 	"use strict";
 	
 	var React = __webpack_require__(/*! react */ 15);
+	var helpers = __webpack_require__(/*! ./helpers.js */ 198);
 	
 	var Summary = React.createClass({
 	    displayName: "Summary",
@@ -35025,7 +35027,7 @@
 	                React.createElement(
 	                    "h3",
 	                    { className: "panel-title" },
-	                    "Turn: ",
+	                    "Week: ",
 	                    this.props.turn
 	                )
 	            ),
@@ -35045,26 +35047,26 @@
 	                        "div",
 	                        null,
 	                        "Cash: $",
-	                        Math.round(cash * 100) / 100
+	                        helpers.printNumber(Math.round(cash * 100) / 100)
 	                    ),
 	                    React.createElement(
 	                        "div",
 	                        null,
 	                        "Happiness: ",
 	                        happiness >= 0 ? "+" : "",
-	                        happiness
+	                        helpers.printNumber(happiness)
 	                    ),
 	                    React.createElement(
 	                        "div",
 	                        null,
 	                        "Income: $",
-	                        income
+	                        helpers.printNumber(income)
 	                    ),
 	                    React.createElement(
 	                        "div",
 	                        null,
 	                        "Expenses: $",
-	                        expenses
+	                        helpers.printNumber(expenses)
 	                    )
 	                )
 	            )
@@ -35087,6 +35089,7 @@
 	
 	var $ = __webpack_require__(/*! jquery */ 1);
 	var React = __webpack_require__(/*! react */ 15);
+	var helpers = __webpack_require__(/*! ./helpers.js */ 198);
 	
 	var Item = React.createClass({
 	    displayName: "Item",
@@ -35123,14 +35126,14 @@
 	                    "div",
 	                    null,
 	                    "Cost: $",
-	                    cost
+	                    helpers.printNumber(cost)
 	                ),
 	                React.createElement(
 	                    "div",
 	                    null,
 	                    "Happiness: ",
 	                    happiness >= 0 ? "+" : "-",
-	                    happiness
+	                    helpers.printNumber(happiness)
 	                ),
 	                React.createElement(
 	                    "div",
@@ -35270,6 +35273,7 @@
 	"use strict";
 	
 	var React = __webpack_require__(/*! react */ 15);
+	var helpers = __webpack_require__(/*! ./helpers.js */ 198);
 	
 	var OpportunityCard = React.createClass({
 	    displayName: "OpportunityCard",
@@ -35331,13 +35335,13 @@
 	                    "div",
 	                    null,
 	                    "Cash: $",
-	                    cash
+	                    helpers.printNumber(cash)
 	                ),
 	                React.createElement(
 	                    "div",
 	                    null,
 	                    "Happiness: ",
-	                    happiness
+	                    helpers.printNumber(happiness)
 	                ),
 	                React.createElement(
 	                    "div",
@@ -35376,6 +35380,22 @@
 	});
 	
 	module.exports = RandomEventCard;
+
+/***/ },
+/* 198 */
+/*!***************************!*\
+  !*** ./src/js/helpers.js ***!
+  \***************************/
+/***/ function(module, exports) {
+
+	var helpers = {
+	    printNumber: function (n) {
+	        return n.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+	    }
+	};
+	
+	module.exports = helpers;
+
 
 /***/ }
 /******/ ]);

@@ -1,4 +1,5 @@
 var React = require("react");
+var helpers = require("./helpers.js");
 
 var OpportunityCard = React.createClass({
     getInitialState: function () {
@@ -33,8 +34,8 @@ var OpportunityCard = React.createClass({
                 </div>
                 <div className="panel-body">
                     <div>{description}</div>
-                    <div>Cash: ${cash}</div>
-                    <div>Happiness: {happiness}</div>
+                    <div>Cash: ${helpers.printNumber(cash)}</div>
+                    <div>Happiness: {helpers.printNumber(happiness)}</div>
                     <div className="checkbox">
                         <label>
                             <input type="checkbox" checked={this.state.takeIt} onChange={this.onChange}/>

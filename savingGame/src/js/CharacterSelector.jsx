@@ -1,4 +1,5 @@
 var React = require("react");
+var helpers = require("./helpers.js");
 
 var CharacterSelector = React.createClass({
     characters: [
@@ -21,8 +22,8 @@ var CharacterSelector = React.createClass({
                         </h3>
                     </div>
                     <div className="panel-body">
-                        <div>Income: ${character.income}</div>
-                        <div>Expenses: ${character.expenses}</div>
+                        <div>Income: ${helpers.printNumber(character.income)}</div>
+                        <div>Expenses: ${helpers.printNumber(character.expenses)}</div>
                     </div>
                 </div>
             </div>

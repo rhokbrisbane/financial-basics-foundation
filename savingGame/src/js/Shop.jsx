@@ -1,5 +1,6 @@
 var $ = require("jquery");
 var React = require("react");
+var helpers = require("./helpers.js");
 
 var Item = React.createClass({
     onChange: function (e) {
@@ -17,8 +18,8 @@ var Item = React.createClass({
                     </h3>
                 </div>
                 <div className="panel-body">
-                    <div>Cost: ${cost}</div>
-                    <div>Happiness: {happiness >= 0 ? "+" : "-"}{happiness}</div>
+                    <div>Cost: ${helpers.printNumber(cost)}</div>
+                    <div>Happiness: {happiness >= 0 ? "+" : "-"}{helpers.printNumber(happiness)}</div>
                     <div className="form-group">
                         <label className="control-label col-xs-12 col-sm-3">
                             Quantity:

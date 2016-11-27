@@ -1,4 +1,5 @@
 var React = require("react");
+var helpers = require("./helpers.js");
 
 var Summary = React.createClass({
     propTypes: {
@@ -16,16 +17,16 @@ var Summary = React.createClass({
                         Summary
                     </h3>
                     <h3 className="panel-title">
-                        Turn: {this.props.turn}
+                        Week: {this.props.turn}
                     </h3>
                 </div>
                 <div id="summary-panel" className="panel-collapse collapse in">
                     <div className="panel-body">
                         <div>Name: {name}</div>
-                        <div>Cash: ${Math.round(cash * 100) / 100}</div>
-                        <div>Happiness: {happiness >= 0 ? "+" : ""}{happiness}</div>
-                        <div>Income: ${income}</div>
-                        <div>Expenses: ${expenses}</div>
+                        <div>Cash: ${helpers.printNumber(Math.round(cash * 100) / 100)}</div>
+                        <div>Happiness: {happiness >= 0 ? "+" : ""}{helpers.printNumber(happiness)}</div>
+                        <div>Income: ${helpers.printNumber(income)}</div>
+                        <div>Expenses: ${helpers.printNumber(expenses)}</div>
                     </div>
                 </div>
             </div>
