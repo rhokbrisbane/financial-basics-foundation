@@ -34821,7 +34821,16 @@
 	                ),
 	                React.createElement(
 	                    "div",
-	                    { className: "col-xs-10 col-xs-offset-1 col-sm-4 col-sm-offset-8 col-md-3 col-md-offset-9 col-lg-2 col-lg-offset-10" },
+	                    { className: "col-xs-4 col-xs-offset-1 col-sm-4 col-sm-offset-2 col-md-3 col-md-offset-3 col-lg-2 col-lg-offset-6" },
+	                    React.createElement(
+	                        "a",
+	                        { className: "btn btn-danger btn-block active", href: "index.html" },
+	                        "Retire"
+	                    )
+	                ),
+	                React.createElement(
+	                    "div",
+	                    { className: "col-xs-6 col-xs-offset-1 col-sm-4 col-sm-offset-2 col-md-3 col-md-offset-3 col-lg-2 col-lg-offset-2" },
 	                    React.createElement(
 	                        "button",
 	                        { className: "btn btn-success btn-block active", onClick: this.nextTurn },
@@ -34859,7 +34868,7 @@
 	var CharacterSelector = React.createClass({
 	    displayName: "CharacterSelector",
 	
-	    characters: [{ name: "Occupation 1", cash: 0, happiness: 0, happinessDecay: 10, income: 900, expenses: 400 }, { name: "Occupation 2", cash: 0, happiness: 0, happinessDecay: 5, income: 800, expenses: 200 }, { name: "Occupation 3", cash: 0, happiness: 0, happinessDecay: 5, income: 700, expenses: 250 }],
+	    characters: [{ name: "Reggie McRib", cash: 0, happiness: 0, happinessDecay: 10, income: 900, expenses: 400 }, { name: "Sammie Sandwich", cash: 0, happiness: 0, happinessDecay: 5, income: 700, expenses: 250 }, { name: "Tony Stark", cash: 0, happiness: 0, happinessDecay: 5, income: 10000, expenses: 9200 }],
 	
 	    selectCharacter: function selectCharacter(character, e) {
 	        this.props.setCharacter(character);
