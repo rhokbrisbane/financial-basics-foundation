@@ -34774,6 +34774,8 @@
 	            this.opportunity.takeIt();
 	        }
 	
+	        character.cash *= 1.00075;
+	
 	        character.cash -= character.expenses;
 	        character.cash += character.income;
 	        character.happiness -= character.happinessDecay;
@@ -34983,7 +34985,7 @@
 	                        "div",
 	                        null,
 	                        "Cash: $",
-	                        cash
+	                        Math.round(cash * 100) / 100
 	                    ),
 	                    React.createElement(
 	                        "div",

@@ -22,7 +22,7 @@ var Summary = React.createClass({
                 <div id="summary-panel" className="panel-collapse collapse in">
                     <div className="panel-body">
                         <div>Name: {name}</div>
-                        <div>Cash: ${cash}</div>
+                        <div>Cash: ${Math.round(cash * 100) / 100}</div>
                         <div>Happiness: {happiness >= 0 ? "+" : ""}{happiness}</div>
                         <div>Income: ${income}</div>
                         <div>Expenses: ${expenses}</div>

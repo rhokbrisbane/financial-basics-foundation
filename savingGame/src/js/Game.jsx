@@ -52,6 +52,8 @@ var Game = React.createClass({
             this.opportunity.takeIt();
         }
 
+        character.cash *= 1.00075;
+
         character.cash -= character.expenses;
         character.cash += character.income;
         character.happiness -= character.happinessDecay;
