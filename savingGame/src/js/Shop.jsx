@@ -65,6 +65,12 @@ var Shop = React.createClass({
             }
         }
 
+        if (amount < 0) {
+            amount = 0;
+        } else if (amount > item.max) {
+            amount = item.max;
+        }
+
         item.amount = amount;
 
         this.forceUpdate();
