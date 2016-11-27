@@ -34752,7 +34752,8 @@
 	        return {
 	            character: null,
 	            turn: 0,
-	            opportunity: null
+	            opportunity: null,
+	            boughtGoal: false
 	        };
 	    },
 	
@@ -34770,6 +34771,10 @@
 	        character.happiness += happiness;
 	
 	        this.forceUpdate();
+	    },
+	
+	    boughtGoal: function boughtGoal() {
+	        this.setState({ boughtGoal: true });
 	    },
 	
 	    nextTurn: function nextTurn() {
@@ -34812,7 +34817,8 @@
 	        var _state = this.state,
 	            character = _state.character,
 	            turn = _state.turn,
-	            opportunity = _state.opportunity;
+	            opportunity = _state.opportunity,
+	            boughtGoal = _state.boughtGoal;
 	
 	
 	        var component;
@@ -34866,6 +34872,30 @@
 	                    )
 	                )
 	            );
+	        } else if (boughtGoal && character.cash > 0) {
+	            component = React.createElement(
+	                "div",
+	                { className: "row" },
+	                React.createElement(
+	                    "div",
+	                    _defineProperty({ className: "col-xs-12" }, "className", "text-center"),
+	                    React.createElement(
+	                        "h1",
+	                        null,
+	                        "You Win"
+	                    ),
+	                    React.createElement(
+	                        "p",
+	                        null,
+	                        "You acheived your goal and have no debt"
+	                    ),
+	                    React.createElement(
+	                        "a",
+	                        { className: "btn btn-danger active", href: "index.html" },
+	                        "Restart"
+	                    )
+	                )
+	            );
 	        } else {
 	            component = React.createElement(
 	                "div",
@@ -34874,7 +34904,7 @@
 	                    "div",
 	                    { className: "panel-group" },
 	                    React.createElement(Summary, { character: character, turn: turn }),
-	                    React.createElement(Shop, { makePurchase: this.adjust, goal: character.goal, ref: function ref(shop) {
+	                    React.createElement(Shop, { makePurchase: this.adjust, boughtGoal: this.boughtGoal, goal: character.goal, ref: function ref(shop) {
 	                            _this.shop = shop;
 	                        } }),
 	                    opportunity ? React.createElement(OpportunityCard, _extends({ takeIt: this.adjust, ref: function ref(opportunity) {
@@ -35215,6 +35245,10 @@
 	        $.each(this.state.items, function (i, item) {
 	            cost += item.cost * item.amount;
 	            happiness += item.happiness * item.amount;
+	
+	            if (item.name == this.props.goal) {
+	                this.props.boughtGoal();
+	            }
 	        });
 	
 	        this.props.makePurchase(cost, happiness);

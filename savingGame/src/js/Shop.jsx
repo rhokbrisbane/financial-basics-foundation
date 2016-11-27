@@ -91,6 +91,10 @@ var Shop = React.createClass({
         $.each(this.state.items, function (i, item) {
             cost += item.cost * item.amount;
             happiness += item.happiness * item.amount;
+
+            if (item.name == this.props.goal) {
+                this.props.boughtGoal();
+            }
         });
 
         this.props.makePurchase(cost, happiness);
