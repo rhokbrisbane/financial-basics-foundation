@@ -35277,7 +35277,7 @@
 	                React.createElement(
 	                    "div",
 	                    { className: "panel-heading" },
-	                    React.createElement("img", { href: "character.img" }),
+	                    React.createElement("img", { src: character.img }),
 	                    React.createElement(
 	                        "h3",
 	                        { className: "panel-title" },

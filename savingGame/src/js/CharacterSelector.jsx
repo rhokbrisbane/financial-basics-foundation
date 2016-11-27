@@ -18,7 +18,7 @@ var CharacterSelector = React.createClass({
             <div className="col-xs-12 col-sm-4 col-md-3 col-lg-2">
                 <div className="panel panel-default character-option" onClick={this.selectCharacter.bind(this, character)} key={character.name}>
                     <div className="panel-heading">
-						<img href="character.img"/>
+						<img src={character.img}/>
                         <h3 className="panel-title">
                             {character.name}
                         </h3>
