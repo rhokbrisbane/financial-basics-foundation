@@ -30,7 +30,8 @@ var Game = React.createClass({
         return {
             character: null,
             turn: 0,
-            opportunity: null
+            opportunity: null,
+            boughtGoal: false
         };
     },
 
@@ -47,6 +48,10 @@ var Game = React.createClass({
         character.happiness += happiness;
 
         this.forceUpdate();
+    },
+
+    boughtGoal: function () {
+        this.setState({boughtGoal: true});
     },
 
     nextTurn: function () {
@@ -83,7 +88,7 @@ var Game = React.createClass({
     },
 
     render: function () {
-        var {character, turn, opportunity} = this.state;
+        var {character, turn, opportunity, boughtGoal} = this.state;
 
         var component;
         if (!character) {
@@ -119,7 +124,22 @@ var Game = React.createClass({
                             Restart
                         </a>
                     </div>
-
+                </div>
+            );
+        } else if (boughtGoal && character.cash > 0) {
+            component = (
+                <div className="row">
+                    <div className="col-xs-12" className="text-center">
+                        <h1>
+                            You Win
+                        </h1>
+                        <p>
+                            You acheived your goal and have no debt
+                        </p>
+                        <a className="btn btn-success active" href="index.html">
+                            Restart
+                        </a>
+                    </div>
                 </div>
             );
         } else {
@@ -127,7 +147,7 @@ var Game = React.createClass({
                 <div>
                     <div className="panel-group">
                         <Summary character={character} turn={turn}/>
-                        <Shop makePurchase={this.adjust} ref={(shop) => {this.shop = shop;}}/>
+                        <Shop makePurchase={this.adjust} boughtGoal={this.boughtGoal} goal={character.goal} ref={(shop) => {this.shop = shop;}}/>
                         {opportunity ? <OpportunityCard takeIt={this.adjust} ref={(opportunity) => {this.opportunity = opportunity;}} {...opportunity}/> : null}
                     </div>
 
