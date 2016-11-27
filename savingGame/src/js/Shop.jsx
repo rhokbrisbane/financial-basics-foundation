@@ -10,7 +10,7 @@ var Item = React.createClass({
         var {name, cost, happiness, max, amount} = this.props;
 
         return (
-            <div className="panel panel-default">
+            <div className="panel panel-default" style={{marginBottom: 15}}>
                 <div className="panel-heading">
                     <h3 className="panel-title">
                         {name}
@@ -36,7 +36,9 @@ var Item = React.createClass({
 var Shop = React.createClass({
     items: [
         {name: "Eating out", cost: 30, happiness: 5, max: 7},
-        {name: "Weekend Away", cost: 800, happiness: 200, max: 1}
+        {name: "Weekend Away", cost: 800, happiness: 200, max: 1},
+        {name: "Beach day", cost: 20, happiness: 20, max: 2},
+        {name: "Car", cost: 50000, happiness: 2000, max: 1}
     ],
 
     getInitialState: function () {
@@ -115,7 +117,7 @@ var Shop = React.createClass({
                     </h3>
                 </div>
                 <div id="shop-panel" className="panel-collapse collapse in">
-                    <div className="panel-body">
+                    <div className="panel-body" style={{paddingBottom: 0}}>
                         <form className="form-horizontal" onSubmit={this.submit}>
                             <div className="row">
                                 {this.state.items.map(this.renderItem)}

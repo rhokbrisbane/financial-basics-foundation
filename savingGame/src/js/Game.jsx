@@ -6,13 +6,24 @@ var OpportunityCard = require("./OpportunityCard.jsx");
 var RandomEventCard = require("./RandomEventCard.jsx");
 
 var Game = React.createClass({
+    interest: {
+        cash: 0.00075,
+        credit: 0.035
+    },
+
     opportunities: [
         {
             name: "Weekend Work",
             description: "Do extra work for the weekend",
             cash: 500,
             happiness: -80
-        }
+        },
+        {
+            name: "RHoK",
+            description: "Random Hacks of Kindness",
+            cash: 0,
+            happiness: 1000
+        },
     ],
 
     getInitialState: function () {
@@ -47,6 +58,13 @@ var Game = React.createClass({
         }
 
         character.cash -= character.expenses;
+
+        if (character.cash < 0) {
+            character.cash *= 1 + this.interest.credit;
+        } else {
+            character.cash *= 1 + this.interest.cash;
+        }
+
         character.cash += character.income;
         character.happiness -= character.happinessDecay;
 
@@ -70,6 +88,40 @@ var Game = React.createClass({
         var component;
         if (!character) {
             component = <CharacterSelector setCharacter={this.setCharacter}/>;
+        } else if (-character.cash * this.interest.credit >= (character.income - character.expenses)) {
+            component = (
+                <div className="row">
+                    <div className="col-xs-12" className="text-center">
+                        <h1>
+                            You Lose
+                        </h1>
+                        <p>
+                            You are being crushed under enormous amounts of debt
+                        </p>
+                        <a className="btn btn-danger active" href="index.html">
+                            Restart
+                        </a>
+                    </div>
+
+                </div>
+            );
+        } else if (character.happiness <= character.minimumHappiness) {
+            component = (
+                <div className="row">
+                    <div className="col-xs-12" className="text-center">
+                        <h1>
+                            You Lose
+                        </h1>
+                        <p>
+                            You are very unhappy
+                        </p>
+                        <a className="btn btn-danger active" href="index.html">
+                            Restart
+                        </a>
+                    </div>
+
+                </div>
+            );
         } else {
             component = (
                 <div>

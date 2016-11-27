@@ -34719,6 +34719,8 @@
 	
 	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 	
+	function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+	
 	var React = __webpack_require__(/*! react */ 15);
 	var CharacterSelector = __webpack_require__(/*! ./CharacterSelector.jsx */ 193);
 	var Summary = __webpack_require__(/*! ./Summary.jsx */ 194);
@@ -34729,11 +34731,21 @@
 	var Game = React.createClass({
 	    displayName: "Game",
 	
+	    interest: {
+	        cash: 0.00075,
+	        credit: 0.035
+	    },
+	
 	    opportunities: [{
 	        name: "Weekend Work",
 	        description: "Do extra work for the weekend",
 	        cash: 500,
 	        happiness: -80
+	    }, {
+	        name: "RHoK",
+	        description: "Random Hacks of Kindness",
+	        cash: 0,
+	        happiness: 1000
 	    }],
 	
 	    getInitialState: function getInitialState() {
@@ -34770,6 +34782,13 @@
 	        }
 	
 	        character.cash -= character.expenses;
+	
+	        if (character.cash < 0) {
+	            character.cash *= 1 + this.interest.credit;
+	        } else {
+	            character.cash *= 1 + this.interest.cash;
+	        }
+	
 	        character.cash += character.income;
 	        character.happiness -= character.happinessDecay;
 	
@@ -34799,6 +34818,54 @@
 	        var component;
 	        if (!character) {
 	            component = React.createElement(CharacterSelector, { setCharacter: this.setCharacter });
+	        } else if (-character.cash * this.interest.credit >= character.income - character.expenses) {
+	            component = React.createElement(
+	                "div",
+	                { className: "row" },
+	                React.createElement(
+	                    "div",
+	                    _defineProperty({ className: "col-xs-12" }, "className", "text-center"),
+	                    React.createElement(
+	                        "h1",
+	                        null,
+	                        "You Lose"
+	                    ),
+	                    React.createElement(
+	                        "p",
+	                        null,
+	                        "You are being crushed under enormous amounts of debt"
+	                    ),
+	                    React.createElement(
+	                        "a",
+	                        { className: "btn btn-danger active", href: "index.html" },
+	                        "Restart"
+	                    )
+	                )
+	            );
+	        } else if (character.happiness <= character.minimumHappiness) {
+	            component = React.createElement(
+	                "div",
+	                { className: "row" },
+	                React.createElement(
+	                    "div",
+	                    _defineProperty({ className: "col-xs-12" }, "className", "text-center"),
+	                    React.createElement(
+	                        "h1",
+	                        null,
+	                        "You Lose"
+	                    ),
+	                    React.createElement(
+	                        "p",
+	                        null,
+	                        "You are very unhappy"
+	                    ),
+	                    React.createElement(
+	                        "a",
+	                        { className: "btn btn-danger active", href: "index.html" },
+	                        "Restart"
+	                    )
+	                )
+	            );
 	        } else {
 	            component = React.createElement(
 	                "div",
@@ -34863,7 +34930,7 @@
 	var CharacterSelector = React.createClass({
 	    displayName: "CharacterSelector",
 	
-	    characters: [{ name: "Reggie McRib", cash: 0, happiness: 0, happinessDecay: 10, income: 900, expenses: 400 }, { name: "Sammie Sandwich", cash: 0, happiness: 0, happinessDecay: 5, income: 700, expenses: 250 }],
+	    characters: [{ name: "Reggie McRib", cash: 0, happiness: 0, happinessDecay: 10, income: 900, expenses: 400, minimumHappiness: -50 }, { name: "Sammie Sandwich", cash: 0, happiness: 0, happinessDecay: 5, income: 700, expenses: 250, minimumHappiness: -100 }, { name: "Tony Stark", cash: 0, happiness: 0, happinessDecay: 5, income: 10000, expenses: 9200, minimumHappiness: -10 }],
 	
 	    selectCharacter: function selectCharacter(character, e) {
 	        this.props.setCharacter(character);
@@ -34978,7 +35045,7 @@
 	                        "div",
 	                        null,
 	                        "Cash: $",
-	                        cash
+	                        Math.round(cash * 100) / 100
 	                    ),
 	                    React.createElement(
 	                        "div",
@@ -35039,7 +35106,7 @@
 	
 	        return React.createElement(
 	            "div",
-	            { className: "panel panel-default" },
+	            { className: "panel panel-default", style: { marginBottom: 15 } },
 	            React.createElement(
 	                "div",
 	                { className: "panel-heading" },
@@ -35087,7 +35154,7 @@
 	var Shop = React.createClass({
 	    displayName: "Shop",
 	
-	    items: [{ name: "Eating out", cost: 30, happiness: 5, max: 7 }, { name: "Weekend Away", cost: 800, happiness: 200, max: 1 }],
+	    items: [{ name: "Eating out", cost: 30, happiness: 5, max: 7 }, { name: "Weekend Away", cost: 800, happiness: 200, max: 1 }, { name: "Beach day", cost: 20, happiness: 20, max: 2 }, { name: "Car", cost: 50000, happiness: 2000, max: 1 }],
 	
 	    getInitialState: function getInitialState() {
 	        var items = this.items.map(function (item) {
@@ -35175,7 +35242,7 @@
 	                { id: "shop-panel", className: "panel-collapse collapse in" },
 	                React.createElement(
 	                    "div",
-	                    { className: "panel-body" },
+	                    { className: "panel-body", style: { paddingBottom: 0 } },
 	                    React.createElement(
 	                        "form",
 	                        { className: "form-horizontal", onSubmit: this.submit },
