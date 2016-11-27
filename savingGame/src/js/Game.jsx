@@ -105,7 +105,7 @@ var Game = React.createClass({
 
                 </div>
             );
-        } else if (character.happiness <= -100) {
+        } else if (character.happiness <= character.minimumHappiness) {
             component = (
                 <div className="row">
                     <div className="col-xs-12" className="text-center">

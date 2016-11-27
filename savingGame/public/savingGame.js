@@ -34842,7 +34842,7 @@
 	                    )
 	                )
 	            );
-	        } else if (character.happiness <= -100) {
+	        } else if (character.happiness <= character.minimumHappiness) {
 	            component = React.createElement(
 	                "div",
 	                { className: "row" },
@@ -34930,7 +34930,7 @@
 	var CharacterSelector = React.createClass({
 	    displayName: "CharacterSelector",
 	
-	    characters: [{ name: "Reggie McRib", cash: 0, happiness: 0, happinessDecay: 10, income: 900, expenses: 400 }, { name: "Sammie Sandwich", cash: 0, happiness: 0, happinessDecay: 5, income: 700, expenses: 250 }, { name: "Tony Stark", cash: 0, happiness: 0, happinessDecay: 5, income: 10000, expenses: 9200 }],
+	    characters: [{ name: "Reggie McRib", cash: 0, happiness: 0, happinessDecay: 10, income: 900, expenses: 400, minimumHappiness: -50 }, { name: "Sammie Sandwich", cash: 0, happiness: 0, happinessDecay: 5, income: 700, expenses: 250, minimumHappiness: -100 }, { name: "Tony Stark", cash: 0, happiness: 0, happinessDecay: 5, income: 10000, expenses: 9200, minimumHappiness: -10 }],
 	
 	    selectCharacter: function selectCharacter(character, e) {
 	        this.props.setCharacter(character);
