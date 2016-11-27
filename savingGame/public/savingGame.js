@@ -34891,7 +34891,7 @@
 	                    ),
 	                    React.createElement(
 	                        "a",
-	                        { className: "btn btn-danger active", href: "index.html" },
+	                        { className: "btn btn-success active", href: "index.html" },
 	                        "Restart"
 	                    )
 	                )
@@ -35246,10 +35246,10 @@
 	            cost += item.cost * item.amount;
 	            happiness += item.happiness * item.amount;
 	
-	            if (item.name == this.props.goal) {
+	            if (item.name == this.props.goal && item.amount > 0) {
 	                this.props.boughtGoal();
 	            }
-	        });
+	        }.bind(this));
 	
 	        this.props.makePurchase(cost, happiness);
 	

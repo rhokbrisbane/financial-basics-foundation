@@ -136,7 +136,7 @@ var Game = React.createClass({
                         <p>
                             You acheived your goal and have no debt
                         </p>
-                        <a className="btn btn-danger active" href="index.html">
+                        <a className="btn btn-success active" href="index.html">
                             Restart
                         </a>
                     </div>
