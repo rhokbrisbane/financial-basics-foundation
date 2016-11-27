@@ -14,6 +14,7 @@
 
     <!-- Font Awesome -->
     <link rel="stylesheet" href="WEB-INF/resources/font-awsome/css/font-awesome.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans|Raleway" rel="stylesheet">
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -26,31 +27,36 @@
     
         <row>
             <section class="col-xs-12 col-md-12" id="header">
-                <h1>Welcome {fname},</h1>
-                <h3>How it it going?</h3>
-                <span>Profile Completion</span>
-                <span>{compenents progress bar react}</span>
+                <h1>Welcome {fname}</h1>
+                <h3>How's it going?</h3>
+                <div class="account-progress">
+                    <span>Profile Completion</span>
+                    <span id="progress">{#/#}</span>
+                </div>
             </section>
             <section class="col-xs-12 col-md-12" id="body-content">
-                <div class="widget col-xs-8 col-md-3" id="game">
+                <div class="widget col-xs-7 col-md-3" id="game">
+                    <div class="widget-margined">
                     <i class="fa fa-gamepad fa-3x" aria-hidden="true"></i>
                     <p>Savings Game</p>
+                    </div>
                 </div>
                 
-                <div class="widget col-xs-4 col-md-3" id="ask">
+                <div class="widget col-xs-5 col-md-3" id="ask">
                     <i class="fa fa-commenting fa-3x" aria-hidden="true"></i>
                     <p>Ask Howl</p>
                 </div>
                 
-                <div class="widget col-xs-4 col-md-3" id="goal">
+                <div class="widget col-xs-5 col-md-3" id="goal">
                     <i class="fa fa-trophy fa-3x" aria-hidden="true"></i>
                     <p>Goals</p>
                 </div>
                 
-                <div class="widget col-xs-8 col-md-3" id="money">
+                <div class="widget col-xs-7 col-md-3" id="money">
                     <i class="fa fa-credit-card fa-3x" aria-hidden="true"></i>
                     <p>Finances</p>
                 </div>
+
             </section>
         </row>
     </div>
