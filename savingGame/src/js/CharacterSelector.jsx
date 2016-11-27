@@ -3,9 +3,9 @@ var helpers = require("./helpers.js");
 
 var CharacterSelector = React.createClass({
     characters: [
-        {name: "Reggie McRib", cash: 0, happiness: 0, happinessDecay: 10, income: 900, expenses: 400, minimumHappiness: -50},
-        {name: "Sammie Sandwich", cash: 0, happiness: 0, happinessDecay: 5, income: 700, expenses: 250, minimumHappiness: -100},
-        {name: "Tony Stark", cash: 0, happiness: 0, happinessDecay: 5, income: 10000, expenses: 9200, minimumHappiness: -10}
+        {name: "Reggie McRib", cash: 0, happiness: 0, happinessDecay: 10, income: 900, expenses: 400, minimumHappiness: -50, goal: "Car"},
+        {name: "Sammie Sandwich", cash: 0, happiness: 0, happinessDecay: 5, income: 700, expenses: 250, minimumHappiness: -100, goal: "Car"},
+        {name: "Tony Stark", cash: 0, happiness: 0, happinessDecay: 5, income: 10000, expenses: 9200, minimumHappiness: -10, goal: "Awesome Car"}
     ],
 
     selectCharacter: function (character, e) {
@@ -24,6 +24,7 @@ var CharacterSelector = React.createClass({
                     <div className="panel-body">
                         <div>Income: ${helpers.printNumber(character.income)}</div>
                         <div>Expenses: ${helpers.printNumber(character.expenses)}</div>
+                        <div>Goal: {character.goal}</div>
                     </div>
                 </div>
             </div>

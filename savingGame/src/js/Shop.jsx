@@ -39,7 +39,8 @@ var Shop = React.createClass({
         {name: "Eating out", cost: 30, happiness: 5, max: 7},
         {name: "Weekend Away", cost: 800, happiness: 200, max: 1},
         {name: "Beach day", cost: 20, happiness: 20, max: 2},
-        {name: "Car", cost: 50000, happiness: 2000, max: 1}
+        {name: "Car", cost: 16000, happiness: 800, max: 1},
+        {name: "Awesome Car", cost: 50000, happiness: 2000, max: 1}
     ],
 
     getInitialState: function () {

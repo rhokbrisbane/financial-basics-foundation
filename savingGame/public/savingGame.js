@@ -34931,7 +34931,7 @@
 	var CharacterSelector = React.createClass({
 	    displayName: "CharacterSelector",
 	
-	    characters: [{ name: "Reggie McRib", cash: 0, happiness: 0, happinessDecay: 10, income: 900, expenses: 400, minimumHappiness: -50 }, { name: "Sammie Sandwich", cash: 0, happiness: 0, happinessDecay: 5, income: 700, expenses: 250, minimumHappiness: -100 }, { name: "Tony Stark", cash: 0, happiness: 0, happinessDecay: 5, income: 10000, expenses: 9200, minimumHappiness: -10 }],
+	    characters: [{ name: "Reggie McRib", cash: 0, happiness: 0, happinessDecay: 10, income: 900, expenses: 400, minimumHappiness: -50, goal: "Car" }, { name: "Sammie Sandwich", cash: 0, happiness: 0, happinessDecay: 5, income: 700, expenses: 250, minimumHappiness: -100, goal: "Car" }, { name: "Tony Stark", cash: 0, happiness: 0, happinessDecay: 5, income: 10000, expenses: 9200, minimumHappiness: -10, goal: "Awesome Car" }],
 	
 	    selectCharacter: function selectCharacter(character, e) {
 	        this.props.setCharacter(character);
@@ -34967,6 +34967,12 @@
 	                        null,
 	                        "Expenses: $",
 	                        helpers.printNumber(character.expenses)
+	                    ),
+	                    React.createElement(
+	                        "div",
+	                        null,
+	                        "Goal: ",
+	                        character.goal
 	                    )
 	                )
 	            )
@@ -35157,7 +35163,7 @@
 	var Shop = React.createClass({
 	    displayName: "Shop",
 	
-	    items: [{ name: "Eating out", cost: 30, happiness: 5, max: 7 }, { name: "Weekend Away", cost: 800, happiness: 200, max: 1 }, { name: "Beach day", cost: 20, happiness: 20, max: 2 }, { name: "Car", cost: 50000, happiness: 2000, max: 1 }],
+	    items: [{ name: "Eating out", cost: 30, happiness: 5, max: 7 }, { name: "Weekend Away", cost: 800, happiness: 200, max: 1 }, { name: "Beach day", cost: 20, happiness: 20, max: 2 }, { name: "Car", cost: 16000, happiness: 800, max: 1 }, { name: "Awesome Car", cost: 50000, happiness: 2000, max: 1 }],
 	
 	    getInitialState: function getInitialState() {
 	        var items = this.items.map(function (item) {
