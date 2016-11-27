@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-    <title>Dashboard</title>
+    <title>CA$HED UP Dashboard</title>
 
     <!-- Bootstrap -->
     <link href="WEB-INF/resources/css/bootstrap.min.css" rel="stylesheet">
@@ -29,28 +29,40 @@
                 <h1>Welcome {fname},</h1>
                 <h3>How it it going?</h3>
                 <span>Profile Completion</span>
-                <span>{compenents progress bar react}</span>
+                <div class="progress">
+                  <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: 40%">
+                      <span class="sr-only">40% Complete (success)</span>
+                  </div>
+                </div>
             </section>
             <section class="col-xs-12 col-md-12" id="body-content">
-                <div class="widget col-xs-8 col-md-3" id="game">
-                    <i class="fa fa-gamepad fa-3x" aria-hidden="true"></i>
-                    <p>Savings Game</p>
-                </div>
+                <a href="#">
+                   <div class="widget col-xs-8 col-md-3" id="game">
+                       <i class="fa fa-gamepad fa-3x" aria-hidden="true"></i>
+                       <p>Savings Game</p>
+                   </div>
+                </a>
                 
-                <div class="widget col-xs-4 col-md-3" id="ask">
-                    <i class="fa fa-commenting fa-3x" aria-hidden="true"></i>
-                    <p>Ask Howl</p>
-                </div>
+                <a href="#">
+                   <div class="widget col-xs-4 col-md-3" id="ask">
+                       <i class="fa fa-commenting fa-3x" aria-hidden="true"></i>
+                       <p>Ask Howl</p>
+                   </div>
+                </a>
                 
-                <div class="widget col-xs-4 col-md-3" id="goal">
-                    <i class="fa fa-trophy fa-3x" aria-hidden="true"></i>
-                    <p>Goals</p>
-                </div>
+                <a href="#">
+                    <div class="widget col-xs-4 col-md-3" id="goal">
+                        <i class="fa fa-trophy fa-3x" aria-hidden="true"></i>
+                        <p>Goals</p>
+                    </div>
+                </a>
                 
-                <div class="widget col-xs-8 col-md-3" id="money">
-                    <i class="fa fa-credit-card fa-3x" aria-hidden="true"></i>
-                    <p>Finances</p>
-                </div>
+                <a href="banks.html">
+                    <div class="widget col-xs-8 col-md-3" id="money">
+                        <i class="fa fa-credit-card fa-3x" aria-hidden="true"></i>
+                        <p>Finances</p>
+                    </div>
+                </a>
             </section>
         </row>
     </div>

@@ -1,11 +1,11 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" id="background-image">
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-    <title>Login</title>
+    <title>CA$HED UP Login</title>
 
     <!-- Bootstrap -->
     <link href="WEB-INF/resources/css/bootstrap.min.css" rel="stylesheet">
@@ -24,38 +24,53 @@
   <body>
     <div class="container-fluid">
     
-        <row>
-           <div id="background-image">
+        <div class="row">
             <section class="col-xs-8 col-md-6 offset-xs-2 offset-md-3" id="login">
                 <img src="WEB-INF/resources/img/howl_md.png">
-                <h1>Product Name</h1>
-                    <form action="" id="loginForm">
-                      <div class="form-group input-group">
-                        <input class="form-control" type="text" name='email' id="email" placeholder="Email"/>          
-                      </div>
-                      <div class="form-group input-group">
-                        <input class="form-control" type="password" name='password' id="pword" placeholder="password"/>     
-                      </div>
-                      <div class="form-group">
-                        <button type="button" class="btn btn-def btn-block" name="login-btn" id="login-btn">Login</button>
-                      </div>
-                      <div class="form-group text-center">
-                        <a href="#">Forgot Password</a>
-                      </div>
-                      
-                      <div class="form-group">
-                        <button type="button" class="btn btn-def btn-block">New User</button>
-                      </div>
-                      <div class="form-group">
-                        <button type="button" class="btn btn-def btn-block">Login with Facebook</button>
-                      </div>
-                      <div class="form-group">
-                        <button type="button" class="btn btn-def btn-block">Login with Google+</button>
-                      </div>
-                    </form>        
+                <h1>CA$HED UP</h1>
+                   
+                <div class="row">
+                    <div class="login-column col-xs-12 col-md-6">
+                        <h6>Sign In</h6>
+                        <form action="" id="loginForm">
+                          <div class="form-group input-group">
+                            <input class="form-control" type="text" name='email' id="email" placeholder="Email"/>          
+                          </div>
+                          <div class="form-group input-group">
+                            <input class="form-control" type="password" name='pword' id="pword" placeholder="Password"/>          
+                          </div>
+                          <div class="form-group">
+                           <a href="dashboard.html" class="btn btn-success btn-block" name="login-btn" id="login-btn">
+                            Login
+                            </a>
+                            <a href="new-user.html" class="btn btn-warning btn-block" name="newuser-btn" id="newuser-btn">
+                            New User
+                            </a>
+                            <div class="form-group text-center">
+                                <a href="#">Forgot Password</a>
+                            </div>
+                          </div>
+                        </form>
+                    </div>
+                    
+                    <div class="col-xs-12 col-md-6">
+                       <h6>&nbsp;</h6>
+                        <div class="form-group">
+                            <a class='btn btn-primary btn-block' href=''> 
+                            <i class="fa fa-facebook"></i>
+                            <span>Sign in with Facebook</span>
+                            </a>
+                        </div>
+                        <div class="form-group">
+                            <a class='btn btn-danger btn-block' href=''> 
+                            <i class="fa fa-google-plus"></i>
+                            <span>Sign in with Google</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
                 </section>
-            </div>
-        </row>
+        </div>
     </div>
     
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
