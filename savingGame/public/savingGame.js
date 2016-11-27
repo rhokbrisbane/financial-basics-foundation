@@ -34979,7 +34979,7 @@
 	                React.createElement(
 	                    "div",
 	                    { className: "panel-heading" },
-	                    React.createElement("img", { src: character.img }),
+	                    React.createElement("img", { src: character.img, className: "center-block" }),
 	                    React.createElement(
 	                        "h3",
 	                        { className: "panel-title" },
@@ -35062,58 +35062,76 @@
 	
 	        return React.createElement(
 	            "div",
-	            { className: "panel panel-default" },
+	            { className: "panel panel-primary" },
 	            React.createElement(
 	                "div",
-	                { className: "panel-heading", role: "button", "data-toggle": "collapse", "data-target": "#summary-panel", "aria-expanded": true, "aria-controls": "#summary-panel", style: { display: "flex", justifyContent: "space-between" } },
+	                { className: "panel-heading", role: "button", "data-toggle": "collapse", "data-target": "#summary-panel", "aria-expanded": true, "aria-controls": "#summary-panel" },
 	                React.createElement(
 	                    "h3",
-	                    { className: "panel-title" },
-	                    "Summary"
-	                ),
-	                React.createElement(
-	                    "h3",
-	                    { className: "panel-title" },
+	                    { className: "text center panel-title" },
 	                    "Week: ",
 	                    this.props.turn
 	                )
 	            ),
 	            React.createElement(
 	                "div",
-	                { id: "summary-panel", className: "panel-collapse collapse in" },
+	                { id: "summary-panel", className: "text-center panel-collapse collapse in" },
 	                React.createElement(
 	                    "div",
 	                    { className: "panel-body" },
 	                    React.createElement(
 	                        "div",
-	                        null,
-	                        "Name: ",
+	                        { style: { fontWeight: 700, fontSize: 24 } },
 	                        name
 	                    ),
 	                    React.createElement(
 	                        "div",
-	                        null,
-	                        "Cash: $",
-	                        helpers.printNumber(Math.round(cash * 100) / 100)
-	                    ),
-	                    React.createElement(
-	                        "div",
-	                        null,
-	                        "Happiness: ",
-	                        happiness >= 0 ? "+" : "",
-	                        helpers.printNumber(happiness)
-	                    ),
-	                    React.createElement(
-	                        "div",
-	                        null,
-	                        "Income: $",
-	                        helpers.printNumber(income)
-	                    ),
-	                    React.createElement(
-	                        "div",
-	                        null,
-	                        "Expenses: $",
-	                        helpers.printNumber(expenses)
+	                        { className: "row" },
+	                        React.createElement(
+	                            "div",
+	                            { className: "col-xs-12 col-sm-6 col-md-3" },
+	                            React.createElement(
+	                                "div",
+	                                null,
+	                                React.createElement("i", { className: "fa fa-money", "aria-hidden": "true" }),
+	                                "Cash: $",
+	                                helpers.printNumber(Math.round(cash * 100) / 100)
+	                            )
+	                        ),
+	                        React.createElement(
+	                            "div",
+	                            { className: "col-xs-12 col-sm-6 col-md-3" },
+	                            React.createElement(
+	                                "div",
+	                                null,
+	                                React.createElement("i", { className: "fa fa-arrow-smile-o", "aria-hidden": "true" }),
+	                                "Happiness: ",
+	                                happiness >= 0 ? "+" : "",
+	                                helpers.printNumber(happiness)
+	                            )
+	                        ),
+	                        React.createElement(
+	                            "div",
+	                            { className: "col-xs-12 col-sm-6 col-md-3" },
+	                            React.createElement(
+	                                "div",
+	                                null,
+	                                React.createElement("i", { className: "fa fa-arrow-up", "aria-hidden": "true" }),
+	                                "Income: $",
+	                                helpers.printNumber(income)
+	                            )
+	                        ),
+	                        React.createElement(
+	                            "div",
+	                            { className: "col-xs-12 col-sm-6 col-md-3" },
+	                            React.createElement(
+	                                "div",
+	                                null,
+	                                React.createElement("i", { className: "fa fa-arrow-down", "aria-hidden": "true" }),
+	                                "Expenses: $",
+	                                helpers.printNumber(expenses)
+	                            )
+	                        )
 	                    )
 	                )
 	            )

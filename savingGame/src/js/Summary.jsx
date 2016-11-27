@@ -19,11 +19,33 @@ var Summary = React.createClass({
                 </div>
                 <div id="summary-panel" className="text-center panel-collapse collapse in">
                     <div className="panel-body">
-                        <div style{{fontWeight: 700, fontSize: 24}}>{name}</div>
-                        <div><i class="fa fa-money" aria-hidden="true"></i>Cash: ${helpers.printNumber(Math.round(cash * 100) / 100)}</div>
-                        <div><i class="fa fa-arrow-smile-o" aria-hidden="true"></i>Happiness: {happiness >= 0 ? "+" : ""}{helpers.printNumber(happiness)}</div>
-                        <div><i class="fa fa-arrow-up" aria-hidden="true"></i>Income: ${helpers.printNumber(income)}</div>
-                        <div><i class="fa fa-arrow-down" aria-hidden="true"></i>Expenses: ${helpers.printNumber(expenses)}</div>
+                        <div style={{fontWeight: 700, fontSize: 24}}>{name}</div>
+                        <div className="row">
+                            <div className="col-xs-12 col-sm-6 col-md-3">
+                                <div>
+                                    <i className="fa fa-money" aria-hidden="true"/>
+                                    Cash: ${helpers.printNumber(Math.round(cash * 100) / 100)}
+                                </div>
+                            </div>
+                            <div className="col-xs-12 col-sm-6 col-md-3">
+                                <div>
+                                    <i className="fa fa-arrow-smile-o" aria-hidden="true"/>
+                                    Happiness: {happiness >= 0 ? "+" : ""}{helpers.printNumber(happiness)}
+                                </div>
+                            </div>
+                            <div className="col-xs-12 col-sm-6 col-md-3">
+                                <div>
+                                    <i className="fa fa-arrow-up" aria-hidden="true"/>
+                                    Income: ${helpers.printNumber(income)}
+                                </div>
+                            </div>
+                            <div className="col-xs-12 col-sm-6 col-md-3">
+                                <div>
+                                    <i className="fa fa-arrow-down" aria-hidden="true"/>
+                                    Expenses: ${helpers.printNumber(expenses)}
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
