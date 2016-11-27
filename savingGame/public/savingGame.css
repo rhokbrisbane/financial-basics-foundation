@@ -5819,6 +5819,7 @@ button.close {
   cursor: pointer; }
 
 .fa {
-  font-size: 25px; }
+  font-size: 25px;
+  margin-right: 10px; }
 
 /*# sourceMappingURL=savingGame.css.map */

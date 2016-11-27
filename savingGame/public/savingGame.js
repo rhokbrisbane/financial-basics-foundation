@@ -35078,7 +35078,7 @@
 	                { id: "summary-panel", className: "text-center panel-collapse collapse in" },
 	                React.createElement(
 	                    "div",
-	                    { className: "panel-body" },
+	                    { className: "panel-body", style: { fontSize: 20 } },
 	                    React.createElement(
 	                        "div",
 	                        { style: { fontWeight: 700, fontSize: 24 } },

@@ -18,7 +18,7 @@ var Summary = React.createClass({
                     </h3>
                 </div>
                 <div id="summary-panel" className="text-center panel-collapse collapse in">
-                    <div className="panel-body">
+                    <div className="panel-body" style={{fontSize: 20}}>
                         <div style={{fontWeight: 700, fontSize: 24}}>{name}</div>
                         <div className="row">
                             <div className="col-xs-12 col-sm-6 col-md-3">
