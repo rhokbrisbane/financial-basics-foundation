@@ -6,6 +6,11 @@ var OpportunityCard = require("./OpportunityCard.jsx");
 var RandomEventCard = require("./RandomEventCard.jsx");
 
 var Game = React.createClass({
+    interest: {
+        cash: 0.00075,
+        credit: 0.035
+    },
+
     opportunities: [
         {
             name: "Weekend Work",
@@ -55,9 +60,9 @@ var Game = React.createClass({
         character.cash -= character.expenses;
 
         if (character.cash < 0) {
-            character.cash *= 1.0035;
+            character.cash *= 1 + this.interest.credit;
         } else {
-            character.cash *= 1.00075;
+            character.cash *= 1 + this.interest.cash;
         }
 
         character.cash += character.income;
@@ -83,7 +88,7 @@ var Game = React.createClass({
         var component;
         if (!character) {
             component = <CharacterSelector setCharacter={this.setCharacter}/>;
-        } else if (character.cash > -20000) {
+        } else if (-character.cash * this.interest.credit < (character.income - character.expenses)) {
             component = (
                 <div>
                     <div className="panel-group">
