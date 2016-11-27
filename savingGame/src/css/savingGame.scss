@@ -14,6 +14,9 @@ $navbar-default-link-color: $navbar-default-color;
 $navbar-default-link-hover-color: $brand-primary;
 $navbar-default-link-hover-bg: white;*/
 
+// Bootstrap panel
+$panel-warning-heading-bg: yellow;
+
 @import "bootstrap";
 
 .character-selector {
