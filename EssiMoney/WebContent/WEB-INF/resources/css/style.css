@@ -111,3 +111,64 @@ button{
 #content-body{
     padding: 50px !important;
 }
+@media only screen and (min-width : 320px) {
+
+    #header{
+        min-height: 20vh;
+        padding:25px 10px 5px 10px !important;
+        width: 100%;
+        font-family: 'Open Sans', sans-serif;
+    }
+
+    #header h1{
+        font-size: 2.25rem;
+        font-weight: normal;       
+    }
+
+    #header h3{
+        font-family: 'Raleway', sans-serif;
+        font-size:1.5rem;
+        font-weight: lighter;
+    }
+
+    .account-progress{
+        padding-top: 10px !important;
+        float: right;
+        text-align: right;
+    }
+    .account-progress #progress{
+        font-size: 2rem;
+    }
+
+    #body-content{
+        padding: 20px 10px 10px 10px !important;
+        background: none !important;
+    }
+
+    #body-content .widget{
+        border: 2px solid white;
+    }
+
+    /*goals css*/
+    .instructional{
+        padding: 20px 25px 10px 25px !important;
+        text-align: center;
+    }
+
+    .action{
+        padding:10px 25px 10px 25px !important;
+    }
+
+    .step{
+        padding: 50px 0px 0px 0px !important;    
+    }
+
+    .circle {
+    border-radius: 50%;
+    width: 200px;
+    height: 200px; 
+    background-color: green;
+    padding: 50px !important;
+    }
+
+}
