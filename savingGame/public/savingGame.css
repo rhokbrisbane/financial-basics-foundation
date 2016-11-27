@@ -5818,4 +5818,7 @@ button.close {
 .character-selector .character-option {
   cursor: pointer; }
 
+.fa {
+  font-size: 25px; }
+
 /*# sourceMappingURL=savingGame.css.map */
