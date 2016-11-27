@@ -34717,6 +34717,8 @@
 
 	"use strict";
 	
+	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+	
 	var React = __webpack_require__(/*! react */ 15);
 	var CharacterSelector = __webpack_require__(/*! ./CharacterSelector.jsx */ 193);
 	var Summary = __webpack_require__(/*! ./Summary.jsx */ 194);
@@ -34727,10 +34729,18 @@
 	var Game = React.createClass({
 	    displayName: "Game",
 	
+	    opportunities: [{
+	        name: "Weekend Work",
+	        description: "Do extra work for the weekend",
+	        cash: 500,
+	        happiness: -80
+	    }],
+	
 	    getInitialState: function getInitialState() {
 	        return {
 	            character: null,
-	            turn: 0
+	            turn: 0,
+	            opportunity: null
 	        };
 	    },
 	
@@ -34755,18 +34765,26 @@
 	
 	
 	        this.shop.checkout();
+	        if (this.opportunity) {
+	            this.opportunity.takeIt();
+	        }
 	
 	        character.cash -= character.expenses;
 	        character.cash += character.income;
 	        character.happiness -= character.happinessDecay;
 	
-	        /*if (Math.random() > 0.7) {
-	            component = <RandomEventCard/>
+	        var opportunity = null;
+	        if (Math.random() > 0.7) {
+	            //component = <RandomEventCard/>
 	        } else {
-	            component = <OpportunityCard/>
-	        }*/
+	            var opportunityIndex = Math.floor(Math.random() * this.opportunities.length);
+	            opportunity = this.opportunities[opportunityIndex];
+	        }
 	
-	        this.setState({ turn: this.state.turn + 1 });
+	        this.setState({
+	            turn: this.state.turn + 1,
+	            opportunity: opportunity
+	        });
 	    },
 	
 	    render: function render() {
@@ -34774,7 +34792,8 @@
 	
 	        var _state = this.state,
 	            character = _state.character,
-	            turn = _state.turn;
+	            turn = _state.turn,
+	            opportunity = _state.opportunity;
 	
 	
 	        var component;
@@ -34790,7 +34809,10 @@
 	                    React.createElement(Summary, { character: character, turn: turn }),
 	                    React.createElement(Shop, { makePurchase: this.adjust, ref: function ref(shop) {
 	                            _this.shop = shop;
-	                        } })
+	                        } }),
+	                    opportunity ? React.createElement(OpportunityCard, _extends({ takeIt: this.adjust, ref: function ref(opportunity) {
+	                            _this.opportunity = opportunity;
+	                        } }, opportunity)) : null
 	                ),
 	                React.createElement(
 	                    "div",
@@ -35039,12 +35061,12 @@
 	                    { className: "form-group" },
 	                    React.createElement(
 	                        "label",
-	                        { className: "control-label col-xs-3" },
+	                        { className: "control-label col-xs-12 col-sm-3" },
 	                        "Quantity:"
 	                    ),
 	                    React.createElement(
 	                        "div",
-	                        { className: "col-xs-9" },
+	                        { className: "col-xs-12 col-sm-9" },
 	                        React.createElement("input", { type: "number", min: 0, max: max, value: amount, onChange: this.onChange, className: "form-control" })
 	                    )
 	                )
@@ -35092,8 +35114,6 @@
 	
 	    submit: function submit(e) {
 	        e.preventDefault();
-	
-	        this.checkout();
 	    },
 	
 	    checkout: function checkout() {
@@ -35148,11 +35168,6 @@
 	                            "div",
 	                            { className: "row" },
 	                            this.state.items.map(this.renderItem)
-	                        ),
-	                        React.createElement(
-	                            "button",
-	                            { type: "submit", className: "btn btn-success active", style: { marginTop: 10 } },
-	                            "Checkout"
 	                        )
 	                    )
 	                )
@@ -35177,60 +35192,79 @@
 	var OpportunityCard = React.createClass({
 	    displayName: "OpportunityCard",
 	
-	    selectAction: function selectAction() {},
+	    getInitialState: function getInitialState() {
+	        return {
+	            takeIt: false
+	        };
+	    },
 	
-	    renderAction: function renderAction(action) {
-	        React.createElement(
-	            "button",
-	            { className: "btn btn-primary active" },
-	            action.name
-	        );
+	    takeIt: function takeIt() {
+	        if (!this.state.takeIt) return;
+	
+	        var _props = this.props,
+	            cash = _props.cash,
+	            happiness = _props.happiness,
+	            takeIt = _props.takeIt;
+	
+	
+	        takeIt(-cash, happiness);
+	
+	        this.setState(this.getInitialState());
+	    },
+	
+	    onChange: function onChange() {
+	        this.setState({ takeIt: !this.state.takeIt });
 	    },
 	
 	    render: function render() {
-	        var description = this.props.description;
+	        var _props2 = this.props,
+	            name = _props2.name,
+	            description = _props2.description,
+	            cash = _props2.cash,
+	            happiness = _props2.happiness;
 	
 	
 	        return React.createElement(
 	            "div",
-	            { className: "modal fade" },
+	            { className: "panel panel-success" },
 	            React.createElement(
 	                "div",
-	                { className: "modal-dialog", role: "document" },
+	                { className: "panel-heading" },
+	                React.createElement(
+	                    "h3",
+	                    { className: "panel-title" },
+	                    "Opportunity: ",
+	                    name
+	                )
+	            ),
+	            React.createElement(
+	                "div",
+	                { className: "panel-body" },
 	                React.createElement(
 	                    "div",
-	                    { className: "modal-content" },
+	                    null,
+	                    description
+	                ),
+	                React.createElement(
+	                    "div",
+	                    null,
+	                    "Cash: $",
+	                    cash
+	                ),
+	                React.createElement(
+	                    "div",
+	                    null,
+	                    "Happiness: ",
+	                    happiness
+	                ),
+	                React.createElement(
+	                    "div",
+	                    { className: "checkbox" },
 	                    React.createElement(
-	                        "div",
-	                        { className: "modal-header" },
-	                        React.createElement(
-	                            "button",
-	                            { type: "button", className: "close", "data-dismiss": "modal", "aria-label": "Close" },
-	                            React.createElement(
-	                                "span",
-	                                { "aria-hidden": true },
-	                                "\xD7"
-	                            )
-	                        ),
-	                        React.createElement(
-	                            "h4",
-	                            { className: "modal-title" },
-	                            "Opportunity"
-	                        )
-	                    ),
-	                    React.createElement(
-	                        "div",
-	                        { className: "modal-body" },
-	                        React.createElement(
-	                            "div",
-	                            null,
-	                            discription
-	                        ),
-	                        React.createElement(
-	                            "div",
-	                            { className: "btn-group" },
-	                            actions.map(this.renderAction)
-	                        )
+	                        "label",
+	                        null,
+	                        React.createElement("input", { type: "checkbox", checked: this.state.takeIt, onChange: this.onChange }),
+	                        "Take It!"
 	                    )
 	                )
 	            )

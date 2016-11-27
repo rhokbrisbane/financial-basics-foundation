@@ -1,41 +1,45 @@
 var React = require("react");
 
 var OpportunityCard = React.createClass({
-    selectAction: function () {
-        
+    getInitialState: function () {
+        return {
+            takeIt: false
+        };
     },
 
-    renderAction: function (action) {
-        <button className="btn btn-primary active">
-            {action.name}
-        </button>
+    takeIt: function () {
+        if (!this.state.takeIt) return;
+
+        var {cash, happiness, takeIt} = this.props;
+
+        takeIt(-cash, happiness);
+
+        this.setState(this.getInitialState());
+    },
+
+    onChange: function () {
+        this.setState({takeIt: !this.state.takeIt});
     },
 
     render: function () {
-        var {description} = this.props;
+        var {name, description, cash, happiness} = this.props;
 
         return (
-            <div className="modal fade">
-                <div className="modal-dialog" role="document">
-                    <div className="modal-content">
-                        <div className="modal-header">
-                            <button type="button" className="close" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden={true}>
-                                    &times;
-                                </span>
-                            </button>
-                            <h4 className="modal-title">
-                                Opportunity
-                            </h4>
-                        </div>
-                        <div className="modal-body">
-                            <div>
-                                {discription}
-                            </div>
-                            <div className="btn-group">
-                                {actions.map(this.renderAction)}
-                            </div>
-                        </div>
+            <div className="panel panel-success">
+                <div className="panel-heading">
+                    <h3 className="panel-title">
+                        Opportunity: {name}
+                    </h3>
+                </div>
+                <div className="panel-body">
+                    <div>{description}</div>
+                    <div>Cash: ${cash}</div>
+                    <div>Happiness: {happiness}</div>
+                    <div className="checkbox">
+                        <label>
+                            <input type="checkbox" checked={this.state.takeIt} onChange={this.onChange}/>
+                            Take It!
+                        </label>
                     </div>
                 </div>
             </div>

@@ -20,10 +20,10 @@ var Item = React.createClass({
                     <div>Cost: ${cost}</div>
                     <div>Happiness: {happiness >= 0 ? "+" : "-"}{happiness}</div>
                     <div className="form-group">
-                        <label className="control-label col-xs-3">
+                        <label className="control-label col-xs-12 col-sm-3">
                             Quantity:
                         </label>
-                        <div className="col-xs-9">
+                        <div className="col-xs-12 col-sm-9">
                             <input type="number" min={0} max={max} value={amount} onChange={this.onChange} className="form-control"/>
                         </div>
                     </div>
@@ -72,8 +72,6 @@ var Shop = React.createClass({
 
     submit: function (e) {
         e.preventDefault();
-
-        this.checkout();
     },
 
     checkout: function () {
@@ -116,9 +114,6 @@ var Shop = React.createClass({
                             <div className="row">
                                 {this.state.items.map(this.renderItem)}
                             </div>
-                            <button type="submit" className="btn btn-success active" style={{marginTop: 10}}>
-                                Checkout
-                            </button>
                         </form>
                     </div>
                 </div>
