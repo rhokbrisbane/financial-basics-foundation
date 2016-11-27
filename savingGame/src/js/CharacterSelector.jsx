@@ -5,7 +5,7 @@ var CharacterSelector = React.createClass({
     characters: [
         {name: "Reggie McRib", cash: 0, happiness: 0, happinessDecay: 10, income: 900, expenses: 400, minimumHappiness: -50, goal: "Car", img: "reggie.jpeg"},
         {name: "Sammie Sandwich", cash: 0, happiness: 0, happinessDecay: 5, income: 700, expenses: 250, minimumHappiness: -100, goal: "Car", img: "sammie.jpeg"},
-        {name: "Tony Stark", cash: 0, happiness: 0, happinessDecay: 5, income: 10000, expenses: 9200, minimumHappiness: -10, goal: "Awesome Car", img: "tony.jpeg"},
+        //{name: "Tony Stark", cash: 0, happiness: 0, happinessDecay: 5, income: 10000, expenses: 9200, minimumHappiness: -10, goal: "Awesome Car", img: "tony.jpeg"},
         {name: "Party Dude", cash: 0, happiness: 0, happinessDecay: 10, income: 1000, expenses: 300, minimumHappiness: -30, goal: "Weekend Away", img: "party.jpeg"}
     ],
 
