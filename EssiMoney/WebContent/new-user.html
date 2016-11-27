@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en" id="background-image">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <title>CA$HED UP New User</title>
+
+    <!-- Bootstrap -->
+    <link href="WEB-INF/resources/css/bootstrap.min.css" rel="stylesheet">
+    <link href="WEB-INF/resources/css/style.css" rel="stylesheet">
+    
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="WEB-INF/resources/font-awsome/css/font-awesome.min.css">
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <div class="container-fluid">
+    
+        <row>
+           <div id="background-image">
+            <section class="col-xs-8 col-md-6 offset-xs-2 offset-md-3" id="login">
+                <img src="WEB-INF/resources/img/howl_md.png">
+                <h1>New to the <br>CA$HED UP</h1>
+                <h3>Register a new account to get started</h3>
+                    <form action="" id="newUserForm">
+                      <div class="form-group input-group">
+                        <input class="form-control" type="text" name='fname' id="fname" placeholder="First Name"/>
+                        <input class="form-control" type="text" name='lname' id="lname" placeholder="Last Name"/>           
+                      </div>
+                      <div class="form-group input-group">
+                        <input class="form-control" type="text" name='email' id="email" placeholder="Email Address"/>
+                      </div>
+                      <div class="form-group input-group">
+                        <input class="form-control" type="password" name='password' id="pword" placeholder="Password"/>
+                        <input class="form-control" type="password" name='confirm-password' id="confirm-pword" placeholder="Confirm Password"/>
+                      </div>
+                      <div class="form-group input-group">
+                        <input class="form-control" type="int" name='age' id="age" placeholder="Age"/>     
+                        <select name="gender">
+                            <option value="" disabled selected>Gender</option>
+                            <option value="male">Male</option>
+                            <option value="female">Female</option>
+                        </select>
+                        <select name="state">
+                            <option value="" disabled selected>State</option>
+                            <option value="qld">QLD</option>
+                            <option value="nsw">NSW</option>
+                            <option value="sa">SA</option>
+                            <option value="vic">VIC</option>
+                            <option value="wa">WA</option>
+                            <option value="nt">NT</option>
+                            <option value="act">ACT</option>
+                            <option value="tas">TAS</option>
+                        </select>
+                        
+                      </div>
+                      <div class="form-group">
+                        <a href="dashboard.html" class="btn btn-success btn-block" name="create-account-btn" id="create-account-btn">
+                            Create Account
+                        </a>
+                      </div>
+                    </form>        
+                </section>
+            </div>
+        </row>
+    </div>
+    
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="js/bootstrap.min.js"></script>
+  </body>
+</html>
