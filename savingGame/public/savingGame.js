@@ -34719,6 +34719,8 @@
 	
 	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 	
+	function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+	
 	var React = __webpack_require__(/*! react */ 15);
 	var CharacterSelector = __webpack_require__(/*! ./CharacterSelector.jsx */ 193);
 	var Summary = __webpack_require__(/*! ./Summary.jsx */ 194);
@@ -34811,7 +34813,7 @@
 	        var component;
 	        if (!character) {
 	            component = React.createElement(CharacterSelector, { setCharacter: this.setCharacter });
-	        } else {
+	        } else if (character.cash > -20000) {
 	            component = React.createElement(
 	                "div",
 	                null,
@@ -34842,6 +34844,30 @@
 	                        "button",
 	                        { className: "btn btn-success btn-block active", onClick: this.nextTurn },
 	                        turn ? "Next Turn" : "Start"
+	                    )
+	                )
+	            );
+	        } else {
+	            component = React.createElement(
+	                "div",
+	                { className: "row" },
+	                React.createElement(
+	                    "div",
+	                    _defineProperty({ className: "col-xs-12" }, "className", "text-center"),
+	                    React.createElement(
+	                        "h1",
+	                        null,
+	                        "You Lose"
+	                    ),
+	                    React.createElement(
+	                        "p",
+	                        null,
+	                        "You are being crushed under enormous amounts of debt"
+	                    ),
+	                    React.createElement(
+	                        "a",
+	                        { className: "btn btn-danger active", href: "index.html" },
+	                        "Restart"
 	                    )
 	                )
 	            );
